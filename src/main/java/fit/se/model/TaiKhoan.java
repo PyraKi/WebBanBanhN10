@@ -8,23 +8,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@NamedQueries ({
-	@NamedQuery(name="getKhachHangByMa", query="select TK from TAIKHOAN TK where TK.maKH = :ma")
-})
 @Table(name="TAIKHOAN")
 public class TaiKhoan implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="MAHD")
+	@Column(name="MATK")
 	private int id;
 	@Column(name="TEN", columnDefinition="nvarchar(255)")
 	private String ten;
@@ -32,8 +27,10 @@ public class TaiKhoan implements Serializable{
 	private String ho;
 	@Column(name="USERNAME")
 	private String username;
-	@Column(name="USERNAME")
-	private String password;
+	@Column(name="HASHEDPASSWORD")
+	private String hashedPassword;
+	@Column(name="PASSWORDSALT")
+	private String passwordSalt;
 	@Column(name="LOAITK")
 	private boolean loaiTK = false;
 	@Column(name="EMAIL", columnDefinition="nvarchar(255)")
@@ -68,11 +65,17 @@ public class TaiKhoan implements Serializable{
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getPassword() {
-		return password;
+	public String getHashedPassword() {
+		return hashedPassword;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setHashedPassword(String hashedPassword) {
+		this.hashedPassword = hashedPassword;
+	}
+	public String getPasswordSalt() {
+		return passwordSalt;
+	}
+	public void setPasswordSalt(String passwordSalt) {
+		this.passwordSalt = passwordSalt;
 	}
 	public boolean isLoaiTK() {
 		return loaiTK;
@@ -139,26 +142,22 @@ public class TaiKhoan implements Serializable{
 			return false;
 		return true;
 	}
-	public TaiKhoan(String ten, String ho, String username, String password, String email, String cmnd, Date ngaySinh,
-			String soDT, String diachi) {
+	public TaiKhoan() {
+		super();
+	}
+	public TaiKhoan(String ten, String ho, String username, String hashedPassword, String passwordSalt, boolean loaiTK,
+			String email, String cmnd, Date ngaySinh, String soDT, String diachi) {
 		super();
 		this.ten = ten;
 		this.ho = ho;
 		this.username = username;
-		this.password = password;
+		this.hashedPassword = hashedPassword;
+		this.passwordSalt = passwordSalt;
+		this.loaiTK = loaiTK;
 		this.email = email;
 		this.cmnd = cmnd;
 		this.ngaySinh = ngaySinh;
 		this.soDT = soDT;
 		this.diachi = diachi;
-	}
-	public TaiKhoan() {
-		super();
-	}
-	@Override
-	public String toString() {
-		return "TaiKhoan [id=" + id + ", ten=" + ten + ", ho=" + ho + ", username=" + username + ", password="
-				+ password + ", loaiTK=" + loaiTK + ", email=" + email + ", cmnd=" + cmnd + ", ngaySinh=" + ngaySinh
-				+ ", soDT=" + soDT + ", diachi=" + diachi + "]";
 	}
 }

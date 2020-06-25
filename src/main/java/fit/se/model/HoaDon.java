@@ -14,16 +14,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@NamedQueries({
-	@NamedQuery(name="getAllHoadon", query="select * from HOADON HD order by HD.NGAYLAPHD desc"),
-	@NamedQuery(name="getDonHangByMa", query="select * from HOADON HD where HD.MAHD = :ma")
-})
 @Table(name = "HOADON")
 public class HoaDon implements Serializable{
 	private static final long serialVersionUID = 1L;
