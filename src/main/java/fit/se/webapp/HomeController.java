@@ -64,6 +64,8 @@ public class HomeController {
 	
 	@RequestMapping(value = "/signInForm", method = RequestMethod.GET)
 	public String login(HttpServletRequest request, Model model) {
+		System.out.println("check list TK:");
+		cr.getAllTK().forEach(x -> {System.out.println(x);});
 		return "login";
 	}
 	

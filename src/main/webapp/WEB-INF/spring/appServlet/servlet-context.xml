@@ -58,12 +58,12 @@ http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 			</beans:props>
 		</beans:property>
 	</beans:bean>
-
+	
 	<beans:bean id="CRUDRepository" class="fit.se.repository.CRUDRepositoryImpl">
 		<beans:property name="sessionFactory"
 			ref="hibernate5AnnotatedSessionFactory" />
 	</beans:bean>
-	<beans:bean id="banhService"
+	<beans:bean id="CRUDService"
 		class="fit.se.service.CRUDServiceImpl">
 		<beans:property name="CRUDRepository" ref="CRUDRepository"></beans:property>
 	</beans:bean>

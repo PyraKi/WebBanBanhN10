@@ -18,10 +18,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "HOADON")
+@Table(name = "HoaDon")
 public class HoaDon implements Serializable{
-	private static final long serialVersionUID = 1L;
 	
+	private static final long serialVersionUID = 5937696543736744026L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="MAHD")

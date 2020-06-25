@@ -11,10 +11,11 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "BANH")
+@Table(name = "Banh")
 public class Banh implements Serializable{
-	private static final long serialVersionUID = 1L;
 	
+	private static final long serialVersionUID = 1351942958934790808L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="MABANH")

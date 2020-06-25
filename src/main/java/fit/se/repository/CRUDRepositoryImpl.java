@@ -84,7 +84,7 @@ public class CRUDRepositoryImpl implements CRUDRepository {
 	@Override
 	public List<TaiKhoan> getAllTK() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<TaiKhoan> list = session.createQuery("from TAIKHOAN").list();
+		List<TaiKhoan> list = session.createQuery("from Taikhoan").list();
 		return list;
 	}
 
@@ -92,8 +92,7 @@ public class CRUDRepositoryImpl implements CRUDRepository {
 	@Override
 	public List<TaiKhoan> getUserbyUsername(String username) {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<TaiKhoan> list = session.createQuery("FROM TAIKHOAN T WHERE T.USERNAME = " + username).list();
-		System.out.println("tk check: " + list);
+		List<TaiKhoan> list = session.createQuery("form Taikhoan T WHERE T.Username = " + username).list();
 		return list;
 	}
 }
