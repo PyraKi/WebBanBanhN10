@@ -13,14 +13,14 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "Taikhoan")
+@Table(name = "TaiKhoan")
 public class TaiKhoan implements Serializable{
 	
 	private static final long serialVersionUID = 155854400270909888L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="MATK")
+	@Column(name="MAKH")
 	private int id;
 	@Column(name="TEN", columnDefinition="nvarchar(255)")
 	private String ten;

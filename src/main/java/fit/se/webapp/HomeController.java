@@ -64,15 +64,19 @@ public class HomeController {
 	
 	@RequestMapping(value = "/signInForm", method = RequestMethod.GET)
 	public String login(HttpServletRequest request, Model model) {
-		System.out.println("check list TK:");
-		cr.getAllTK().forEach(x -> {System.out.println(x);});
 		return "login";
 	}
 	
 	@RequestMapping(value = "/signIn", method = RequestMethod.POST)
-	public String signIn() {
-		
-		return "";
+	public String signIn(@RequestParam String username, @RequestParam String pass, HttpServletRequest request, Model model) {
+		boolean state = LoginSession.signIn(request, username, pass);
+		if(!state) {
+			model.addAttribute("errorNotFound", "Username hoặc password không đúng");
+			return "login";
+		}
+		else {
+			return "redirect:/home";
+		}
 	}
 	
 	@RequestMapping(value = "/signUpForm", method = RequestMethod.GET)

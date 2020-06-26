@@ -79,6 +79,6 @@ public class CRUDServiceImpl implements CRUDService {
 	@Override
 	@Transactional
 	public List<TaiKhoan> getUserbyUsername(String username) {
-		return this.getUserbyUsername(username);
+		return this.cr.getUserbyUsername(username);
 	}
 }

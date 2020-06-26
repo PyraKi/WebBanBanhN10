@@ -45,6 +45,9 @@ http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 		<beans:property name="annotatedClasses">
 			<beans:list>
 				<beans:value>fit.se.model.Banh</beans:value>
+				<beans:value>fit.se.model.TaiKhoan</beans:value>
+				<beans:value>fit.se.model.ChiTietHoaDon</beans:value>
+				<beans:value>fit.se.model.HoaDon</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">

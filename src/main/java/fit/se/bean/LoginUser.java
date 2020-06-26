@@ -9,6 +9,7 @@ public class LoginUser {
 
 	private TaiKhoan tk;
 	private Date lastLogin;
+	
     public LoginUser() {
 		
     }

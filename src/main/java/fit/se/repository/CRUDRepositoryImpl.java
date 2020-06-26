@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 
 import fit.se.model.Banh;
 import fit.se.model.TaiKhoan;
@@ -84,7 +85,7 @@ public class CRUDRepositoryImpl implements CRUDRepository {
 	@Override
 	public List<TaiKhoan> getAllTK() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<TaiKhoan> list = session.createQuery("from Taikhoan").list();
+		List<TaiKhoan> list = session.createQuery("from TaiKhoan").list();
 		return list;
 	}
 
@@ -92,7 +93,9 @@ public class CRUDRepositoryImpl implements CRUDRepository {
 	@Override
 	public List<TaiKhoan> getUserbyUsername(String username) {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<TaiKhoan> list = session.createQuery("form Taikhoan T WHERE T.Username = " + username).list();
-		return list;
+		String hql = "from TaiKhoan T WHERE T.username  = :taikhaon_username";
+		Query<TaiKhoan> query = session.createQuery(hql);
+		query.setParameter("taikhaon_username", username);
+		return query.list();
 	}
 }

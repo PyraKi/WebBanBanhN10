@@ -27,7 +27,7 @@ public class HoaDon implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="MAHD")
 	private int maHD;
-	@OneToMany(mappedBy="HOADON", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="hoaDon", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<ChiTietHoaDon> chiTietHoaDons = new ArrayList<ChiTietHoaDon>();
 	@ManyToOne()
 	@JoinColumn(referencedColumnName="maKH", name="MAKH")
