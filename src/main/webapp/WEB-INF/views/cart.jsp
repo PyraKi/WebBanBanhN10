@@ -128,7 +128,7 @@
 					<tbody>
 						<c:forEach items="${gioHang}" var="item">
 							<tr>
-								<td><img src="<c:out value="resources/${item.banh.pathHinhAnh}"></c:out>" width="170"
+								<td><img src="<c:out value="resources/${item.banh.urlImg}"></c:out>" width="170"
 									height="170" alt=""></td>
 								<td>${item.banh.tenBanh}</td>
 								<td>${item.banh.gia}</td>

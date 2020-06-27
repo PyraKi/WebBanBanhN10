@@ -7,11 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name = "Banh")
+@NamedQueries ({
+	@NamedQuery(name="getAllBanh", query="select bn from Banh bn")
+})
 public class Banh implements Serializable{
 	
 	private static final long serialVersionUID = 1351942958934790808L;

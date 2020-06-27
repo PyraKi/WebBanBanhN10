@@ -17,9 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import fit.se.bean.GioHang;
+import fit.se.bean.LoginUser;
 import fit.se.model.Banh;
 import fit.se.model.TaiKhoan;
 import fit.se.service.CRUDService;
+import fit.se.session.GioHangSession;
 import fit.se.session.LoginSession;
 
 @Controller
@@ -64,7 +67,12 @@ public class HomeController {
 	
 	@RequestMapping(value = "/signInForm", method = RequestMethod.GET)
 	public String login(HttpServletRequest request, Model model) {
-		return "login";
+		LoginUser login = LoginSession.getLoginInSession(request);
+		if(login != null) {
+			return "redirect:/home";
+		} else {
+			return "login";
+		}
 	}
 	
 	@RequestMapping(value = "/signIn", method = RequestMethod.POST)
@@ -126,9 +134,20 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/addGioHang", method = RequestMethod.POST)
-	public String themGioHang() {
-		
-		return "";
+	public String homeAddGioHang(@RequestParam Integer PageBanh, @RequestParam Integer maBanh, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+		GioHang gh = GioHangSession.getGioHangInSession(request);
+		System.out.println("timBanh: " + cr.timBanh(maBanh));
+		gh.themBanh(cr.timBanh(maBanh));
+		redirectAttributes.addAttribute("PageBanh", PageBanh);
+		return "redirect:/index";
 	}
 	
+	@RequestMapping(value = "/shoppingCart", method = RequestMethod.GET)
+	public String cartShow(HttpServletRequest request, Model model) {
+		GioHang gh = GioHangSession.getGioHangInSession(request);
+//		System.out.println(gh.getChiTietHoaDons());
+//		model.addAttribute("gioHang", gh.getChiTietHoaDons());
+//		model.addAttribute("tongDonHang", gh.tong());
+		return "cart";
+	}
 }

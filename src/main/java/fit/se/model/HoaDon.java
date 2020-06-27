@@ -14,11 +14,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "HoaDon")
+@NamedQueries ({
+	@NamedQuery(name="getAllHoaDon", query="select hd from HoaDon hd order by hd.ngayLapHD desc"),
+	@NamedQuery(name="getHoaDonByMa", query="select hd from HoaDon hd where hd.maHD = :ma")
+})
 public class HoaDon implements Serializable{
 	
 	private static final long serialVersionUID = 5937696543736744026L;
@@ -32,12 +38,20 @@ public class HoaDon implements Serializable{
 	@ManyToOne()
 	@JoinColumn(referencedColumnName="maKH", name="MAKH")
 	private TaiKhoan taiKhoan;
+	@Column(name="TENKH")
+	private String tenKH;
+	@Column(name="HOKH")
+	private String hoKH;
+	@Column(name="SODT")
+	private String soDT;
 	@Column(name="DIACHI", columnDefinition="nvarchar(255)")
 	private String diaChi;
 	@Column(name="THANHTOAN")
-	private String ThanToan;
+	private String thanhToan;
 	@Column(name="NGAYLAPHD")
 	private Date ngayLapHD;
+	@Column(name="TONGTIEN")
+	private double tongTien; 
 	public int getMaHD() {
 		return maHD;
 	}
@@ -56,17 +70,35 @@ public class HoaDon implements Serializable{
 	public void setTaiKhoan(TaiKhoan taiKhoan) {
 		this.taiKhoan = taiKhoan;
 	}
+	public String getTenKH() {
+		return tenKH;
+	}
+	public void setTenKH(String tenKH) {
+		this.tenKH = tenKH;
+	}
+	public String getHoKH() {
+		return hoKH;
+	}
+	public void setHoKH(String hoKH) {
+		this.hoKH = hoKH;
+	}
+	public String getSoDT() {
+		return soDT;
+	}
+	public void setSoDT(String soDT) {
+		this.soDT = soDT;
+	}
 	public String getDiaChi() {
 		return diaChi;
 	}
 	public void setDiaChi(String diaChi) {
 		this.diaChi = diaChi;
 	}
-	public String getThanToan() {
-		return ThanToan;
+	public String getThanhToan() {
+		return thanhToan;
 	}
-	public void setThanToan(String thanToan) {
-		ThanToan = thanToan;
+	public void setThanhToan(String thanhToan) {
+		this.thanhToan = thanhToan;
 	}
 	public Date getNgayLapHD() {
 		return ngayLapHD;
@@ -74,12 +106,11 @@ public class HoaDon implements Serializable{
 	public void setNgayLapHD(Date ngayLapHD) {
 		this.ngayLapHD = ngayLapHD;
 	}
-	public double tong() {
-		double tong = 0;
-		for (ChiTietHoaDon ct : chiTietHoaDons) {
-			tong = ct.tong();
-		}
-		return tong;
+	public double getTongTien() {
+		return tongTien;
+	}
+	public void setTongTien(double tongTien) {
+		this.tongTien = tongTien;
 	}
 	@Override
 	public int hashCode() {
@@ -104,41 +135,22 @@ public class HoaDon implements Serializable{
 	public HoaDon() {
 		super();
 	}
-	public boolean themBanh(Banh b) {
-		for (ChiTietHoaDon ct : chiTietHoaDons) {
-			if(ct.getBanh().getMaBanh() == b.getMaBanh()) {
-				ct.setSoLuong(ct.getSoLuong() + 1);
-				tong();
-				return true;
-			}
-		}
-		return chiTietHoaDons.add(new ChiTietHoaDon(b, 1));
-	}
-	public boolean capNhatSP(int index, int soLuong) {
-		try {
-			ChiTietHoaDon ct = chiTietHoaDons.get(index);
-			ct.setSoLuong(soLuong);
-			chiTietHoaDons.set(index, ct);
-			tong();
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-	public boolean xoaSP(int index) {
-		try {
-			chiTietHoaDons.remove(index);
-			tong();
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
+	public HoaDon(List<ChiTietHoaDon> chiTietHoaDons, TaiKhoan taiKhoan, String tenKH, String hoKH, String soDT,
+			String diaChi, String thanhToan, Date ngayLapHD, double tongTien) {
+		super();
+		this.chiTietHoaDons = chiTietHoaDons;
+		this.taiKhoan = taiKhoan;
+		this.tenKH = tenKH;
+		this.hoKH = hoKH;
+		this.soDT = soDT;
+		this.diaChi = diaChi;
+		this.thanhToan = thanhToan;
+		this.ngayLapHD = ngayLapHD;
+		this.tongTien = tongTien;
 	}
 	@Override
 	public String toString() {
 		return "HoaDon [maHD=" + maHD + ", chiTietHoaDons=" + chiTietHoaDons + ", taiKhoan=" + taiKhoan + ", diaChi="
-				+ diaChi + ", ThanToan=" + ThanToan + ", tong()=" + tong() + "]";
+				+ diaChi + ", ThanToan=" + thanhToan + ", tongTien=" + tongTien + "]";
 	}
 }

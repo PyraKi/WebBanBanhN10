@@ -72,8 +72,9 @@ public class ChiTietHoaDon implements Serializable{
 			return false;
 		return true;
 	}
-	public ChiTietHoaDon(Banh banh, int soLuong) {
+	public ChiTietHoaDon(HoaDon hoaDon, Banh banh, int soLuong) {
 		super();
+		this.hoaDon = hoaDon;
 		this.banh = banh;
 		this.soLuong = soLuong;
 	}
@@ -82,5 +83,9 @@ public class ChiTietHoaDon implements Serializable{
 	}
 	public double tong() {
 		return banh.getGia() * soLuong;
+	}
+	@Override
+	public String toString() {
+		return "ChiTietHoaDon [hoaDon=" + hoaDon + ", banh=" + banh + ", soLuong=" + soLuong + "]";
 	}
 }

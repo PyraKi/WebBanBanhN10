@@ -8,12 +8,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "TaiKhoan")
+@NamedQueries ({
+	@NamedQuery(name="getAllTaiKhoan", query="select tk from TaiKhoan tk"),
+	@NamedQuery(name="getUserTaiKhoanByName", query="select tk from TaiKhoan tk where tk.username = :ma")
+})
 public class TaiKhoan implements Serializable{
 	
 	private static final long serialVersionUID = 155854400270909888L;

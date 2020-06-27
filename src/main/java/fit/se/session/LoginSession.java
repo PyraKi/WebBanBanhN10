@@ -11,7 +11,6 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,8 +23,6 @@ import fit.se.service.CRUDService;
 public class LoginSession {
 	
 	private static CRUDService cr;
-	private static LoginUser login;
-	private static HttpSession session;
 	
 	@Autowired()
 	CRUDService crudService;
@@ -37,10 +34,10 @@ public class LoginSession {
 	}
 
 	public static LoginUser getLoginInSession(HttpServletRequest request) {
-		LoginUser login = (LoginUser) session.getAttribute("login");
+		LoginUser login = (LoginUser) request.getSession().getAttribute("login");
 		if(login == null) {
 			login = new LoginUser();
-			session.setAttribute("login", login);
+			request.getSession().setAttribute("login", login);
 		}
 		return login;
 	}
@@ -76,9 +73,9 @@ public class LoginSession {
 		return true;
 	}
 	
+	@SuppressWarnings("null")
 	public static boolean signIn(HttpServletRequest request, String userName, String password) {
-		login = getLoginInSession(request);
-		System.out.println("check log: " + login.getTk());
+		LoginUser login = getLoginInSession(request);
 		if(login != null) {
 			return true;
 		} else {
@@ -105,7 +102,7 @@ public class LoginSession {
 		        if(hexString.toString().equalsIgnoreCase(c.getHashedPassword())) {
 		        	login.setTk(c);
 		        	login.setLastLogin(Date.from(Instant.now()));
-		        	session.setAttribute("login", login);
+		        	request.getSession().setAttribute("login", login);
 		        	return true;
 		        }
 		        return false;

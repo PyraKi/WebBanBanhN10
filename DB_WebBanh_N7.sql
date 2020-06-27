@@ -117,10 +117,14 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[HOADON](
 	[MAHD] [int] IDENTITY(1,1) NOT NULL,
-	[DIACHI] [nvarchar](255) NULL,
-	[THANHTOAN] [int] NULL,
-	[NGAYLAPHD] [datetime] NULL,
 	[MAKH] [int] NULL,
+	[TENKH] [nvarchar](255) NULL,
+	[HOKH] [nvarchar](255) NULL,
+	[SODT] [varchar](255) NULL,
+	[DIACHI] [nvarchar](255) NULL,
+	[THANHTOAN] [nvarchar](255) NULL,
+	[NGAYLAPHD] [datetime] NULL,
+	[TONGTIEN] [float] NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[MAHD] ASC
