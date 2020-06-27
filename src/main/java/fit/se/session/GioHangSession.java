@@ -36,7 +36,6 @@ public class GioHangSession {
 			gioHang = new GioHang();
 			request.getSession().setAttribute("cart", gioHang);
 		}
-		System.out.println(gioHang);
 		return gioHang;
 	}
 	

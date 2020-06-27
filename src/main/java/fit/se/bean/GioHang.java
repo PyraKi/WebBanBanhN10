@@ -130,4 +130,12 @@ public class GioHang {
 		}
 		return tong;
 	}
+
+	@Override
+	public String toString() {
+		return "GioHang [maHD=" + maHD + ", chiTietHoaDons=" + chiTietHoaDons + ", taiKhoan=" + taiKhoan + ", tenKH="
+				+ tenKH + ", hoKH=" + hoKH + ", soDT=" + soDT + ", diaChi=" + diaChi + ", ThanToan=" + ThanToan
+				+ ", ngayLapHD=" + ngayLapHD + "]";
+	}
+	
 }

@@ -136,7 +136,7 @@ public class HomeController {
 	@RequestMapping(value = "/addGioHang", method = RequestMethod.POST)
 	public String homeAddGioHang(@RequestParam Integer PageBanh, @RequestParam Integer maBanh, HttpServletRequest request, RedirectAttributes redirectAttributes) {
 		GioHang gh = GioHangSession.getGioHangInSession(request);
-		System.out.println("timBanh: " + cr.timBanh(maBanh));
+//		System.out.println("timBanh: " + cr.timBanh(maBanh));
 		gh.themBanh(cr.timBanh(maBanh));
 		redirectAttributes.addAttribute("PageBanh", PageBanh);
 		return "redirect:/index";
@@ -145,9 +145,23 @@ public class HomeController {
 	@RequestMapping(value = "/shoppingCart", method = RequestMethod.GET)
 	public String cartShow(HttpServletRequest request, Model model) {
 		GioHang gh = GioHangSession.getGioHangInSession(request);
-//		System.out.println(gh.getChiTietHoaDons());
-//		model.addAttribute("gioHang", gh.getChiTietHoaDons());
-//		model.addAttribute("tongDonHang", gh.tong());
+//		System.out.println("cart detail: " + gh.getChiTietHoaDons().toString());
+		model.addAttribute("gioHang", gh.getChiTietHoaDons());
+		model.addAttribute("tongDonHang", gh.tong());
 		return "cart";
+	}
+	
+	@RequestMapping(value = "/shoppingCart", method = RequestMethod.POST)
+	public String cartUpdateQuantity(@RequestParam Integer index, @RequestParam Integer soLuong, HttpServletRequest request, Model model) {
+		GioHang gh = GioHangSession.getGioHangInSession(request);
+		gh.capNhatSP(index - 1, soLuong);
+		return "redirect:/shoppingCart";
+	}
+	
+	@RequestMapping(value = "/removeGioHang", method = RequestMethod.POST)
+	public String cartRemoveGioHang(@RequestParam Integer index, HttpServletRequest request) {
+		GioHang gh = GioHangSession.getGioHangInSession(request);
+		gh.xoaSP(index - 1);
+		return "redirect:/shoppingCart";
 	}
 }

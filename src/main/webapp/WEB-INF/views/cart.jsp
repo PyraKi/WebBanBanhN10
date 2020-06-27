@@ -126,7 +126,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${gioHang}" var="item">
+						<c:forEach items="${gioHang}" var="item" varStatus="counter">
 							<tr>
 								<td><img src="<c:out value="resources/${item.banh.urlImg}"></c:out>" width="170"
 									height="170" alt=""></td>
@@ -135,6 +135,7 @@
 								<td>
 									<form action="" method="POST">
 										<input type="hidden" name="maBanh" value="${item.banh.maBanh}">
+										<input type="hidden" name="index" value="${counter.count}">
 										<input type="number" style="width: 5em;" name="soLuong"
 											min="1" max="200" required="required" value="${item.soLuong}">
 											<input type="submit"
@@ -145,6 +146,7 @@
 								<td>${item.banh.gia * item.soLuong}</td>
 								<td>
 									<form action="removeGioHang" method="POST">
+										<input type="hidden" name="index" value="${counter.count}">
 										<input type="hidden" name="maBanh" value="${item.banh.maBanh}">
 										<input type="submit" value="Xóa" class="btn btn-primary">
 									</form>
