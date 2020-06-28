@@ -39,7 +39,7 @@ public class CRUDServiceImpl implements CRUDService {
 	}
 
 	@Override
-	public Banh timBanh(int maBanh) {
+	public List<Banh> timBanh(int maBanh) {
 		return this.cr.timBanh(maBanh);
 	}
 
@@ -64,7 +64,7 @@ public class CRUDServiceImpl implements CRUDService {
 	}
 
 	@Override
-	public TaiKhoan timTK(int maTK) {
+	public List<TaiKhoan> timTK(int maTK) {
 		return cr.timTK(maTK);
 	}
 

@@ -36,7 +36,7 @@ public class HoaDon implements Serializable{
 	@OneToMany(mappedBy="hoaDon", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<ChiTietHoaDon> chiTietHoaDons = new ArrayList<ChiTietHoaDon>();
 	@ManyToOne()
-	@JoinColumn(referencedColumnName="maKH", name="MAKH")
+	@JoinColumn(referencedColumnName="id", name="ID")
 	private TaiKhoan taiKhoan;
 	@Column(name="TENKH")
 	private String tenKH;
@@ -51,7 +51,9 @@ public class HoaDon implements Serializable{
 	@Column(name="NGAYLAPHD")
 	private Date ngayLapHD;
 	@Column(name="TONGTIEN")
-	private double tongTien; 
+	private double tongTien;
+	@Column(name="SOTHE")
+	private String soThe;
 	public int getMaHD() {
 		return maHD;
 	}
@@ -112,6 +114,12 @@ public class HoaDon implements Serializable{
 	public void setTongTien(double tongTien) {
 		this.tongTien = tongTien;
 	}
+	public String getSoThe() {
+		return soThe;
+	}
+	public void setSoThe(String soThe) {
+		this.soThe = soThe;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -135,22 +143,24 @@ public class HoaDon implements Serializable{
 	public HoaDon() {
 		super();
 	}
-	public HoaDon(List<ChiTietHoaDon> chiTietHoaDons, TaiKhoan taiKhoan, String tenKH, String hoKH, String soDT,
-			String diaChi, String thanhToan, Date ngayLapHD, double tongTien) {
+	public HoaDon(TaiKhoan taiKhoan, String tenKH, String hoKH, String soDT,
+			String diaChi, String thanhToan, String soThe, Date ngayLapHD, double tongTien, List<ChiTietHoaDon> chiTietHoaDons) {
 		super();
-		this.chiTietHoaDons = chiTietHoaDons;
 		this.taiKhoan = taiKhoan;
 		this.tenKH = tenKH;
 		this.hoKH = hoKH;
 		this.soDT = soDT;
 		this.diaChi = diaChi;
 		this.thanhToan = thanhToan;
+		this.soThe = soThe;
 		this.ngayLapHD = ngayLapHD;
 		this.tongTien = tongTien;
+		this.chiTietHoaDons = chiTietHoaDons;
 	}
 	@Override
 	public String toString() {
-		return "HoaDon [maHD=" + maHD + ", chiTietHoaDons=" + chiTietHoaDons + ", taiKhoan=" + taiKhoan + ", diaChi="
-				+ diaChi + ", ThanToan=" + thanhToan + ", tongTien=" + tongTien + "]";
+		return "HoaDon [maHD=" + maHD + ", chiTietHoaDons=" + chiTietHoaDons + ", taiKhoan=" + taiKhoan + ", tenKH="
+				+ tenKH + ", hoKH=" + hoKH + ", soDT=" + soDT + ", diaChi=" + diaChi + ", thanhToan=" + thanhToan
+				+ ", ngayLapHD=" + ngayLapHD + ", tongTien=" + tongTien + ", soThe=" + soThe + "]";
 	}
 }

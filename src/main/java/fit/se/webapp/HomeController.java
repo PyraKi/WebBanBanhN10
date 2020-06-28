@@ -137,7 +137,7 @@ public class HomeController {
 	public String homeAddGioHang(@RequestParam Integer PageBanh, @RequestParam Integer maBanh, HttpServletRequest request, RedirectAttributes redirectAttributes) {
 		GioHang gh = GioHangSession.getGioHangInSession(request);
 //		System.out.println("timBanh: " + cr.timBanh(maBanh));
-		gh.themBanh(cr.timBanh(maBanh));
+		gh.themBanh(cr.timBanh(maBanh).get(0));
 		redirectAttributes.addAttribute("PageBanh", PageBanh);
 		return "redirect:/index";
 	}
@@ -178,5 +178,47 @@ public class HomeController {
 		model.addAttribute("tongDonHang", gh.tong());
 		model.addAttribute("khachHang", tk);
 		return "checkout";
+	}
+	
+	@RequestMapping(value = "/confirmCheckout", method = RequestMethod.POST)
+	public String checkout(@RequestParam Map<String, String> requestParams, HttpServletRequest request, Model model, RedirectAttributes redirectAttributes) {
+		LoginUser log = LoginSession.getLoginInSession(request);
+		TaiKhoan tk = log.getTk();
+		if(tk == null) {
+			return "redirect:/signInForm";
+		}
+
+		GioHang gh = GioHangSession.getGioHangInSession(request);
+//		System.out.println(gh);
+		
+		String hoKH = requestParams.get("lastName");
+		String tenKH = requestParams.get("firstName");
+		String diaChi = requestParams.get("address");
+		String soDT = requestParams.get("phone");
+		String soThe = requestParams.get("creditCardNumber") != null ? requestParams.get("creditCardNumber") : "";
+		String payment = requestParams.get("payment");
+		int errorCount = 0;
+		// Phase 1: Check no credit cart info
+		if(payment.equalsIgnoreCase("creditCard")) {
+			if(soThe.trim().equals("")) {
+				redirectAttributes.addAttribute("errorCreditCard", "Số thẻ không được trống đối với thanh toán qua thẻ tín dụng");
+				errorCount++;
+			}
+		}
+		if(errorCount > 0) {
+			redirectAttributes.addAttribute("wrongInput", "Có thông tin nhập sai. Các trường nhập đã bị khôi phục thành mặc định, vui lòng nhập lại");
+			return "redirect:/checkoutFormFailed";
+		}
+//		System.out.println(log.getTaiKhoanInfo().getId());
+		boolean state = GioHangSession.thanhToan(gh, log.getTk().getId(), hoKH, tenKH, soDT, diaChi, soThe, payment);
+		if(state) {
+			redirectAttributes.addAttribute("PageBanh", 1);
+			redirectAttributes.addAttribute("orderSuccess", "Đặt hàng thành công");
+			return "redirect:/indexSuccess";
+		}
+		else {
+			redirectAttributes.addAttribute("wrongInput", "Có thông tin nhập sai. Các trường nhập đã bị khôi phục thành mặc định, vui lòng nhập lại");
+			return "redirect:/checkoutFormFailed";
+		}
 	}
 }

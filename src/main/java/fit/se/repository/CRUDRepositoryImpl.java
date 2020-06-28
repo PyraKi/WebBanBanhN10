@@ -34,9 +34,10 @@ public class CRUDRepositoryImpl implements CRUDRepository {
 		em.merge(b);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Banh timBanh(int maBanh) {
-		return em.find(Banh.class, maBanh);
+	public List<Banh> timBanh(int maBanh) {
+		return em.createNamedQuery("getBanhByMaBanh").setParameter("ma", maBanh).getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -61,9 +62,10 @@ public class CRUDRepositoryImpl implements CRUDRepository {
 		em.merge(t);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public TaiKhoan timTK(int maTK) {
-		return em.find(TaiKhoan.class, maTK);
+	public List<TaiKhoan> timTK(int maTK) {
+		return em.createNamedQuery("getTaiKhoanByMa").setParameter("ma", maTK).getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -75,7 +77,7 @@ public class CRUDRepositoryImpl implements CRUDRepository {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<TaiKhoan> getUserbyUsername(String username) {
-		return em.createNamedQuery("getUserTaiKhoanByName").setParameter("ma", username).getResultList();
+		return em.createNamedQuery("getTaiKhoanByName").setParameter("ma", username).getResultList();
 	}
 
 	@Override

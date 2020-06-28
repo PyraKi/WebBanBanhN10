@@ -15,7 +15,7 @@ public interface CRUDService {
 
 	public void suaBanh(Banh b);
 
-	public Banh timBanh(int maBanh);
+	public List<Banh> timBanh(int maBanh);
 
 	public List<Banh> getAllBanh();
 
@@ -25,7 +25,7 @@ public interface CRUDService {
 
 	public void SuaTK(TaiKhoan t);
 
-	public TaiKhoan timTK(int maTK);
+	public List<TaiKhoan> timTK(int maTK);
 
 	public List<TaiKhoan> getAllTK();
 

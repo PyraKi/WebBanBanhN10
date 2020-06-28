@@ -18,7 +18,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "TaiKhoan")
 @NamedQueries ({
 	@NamedQuery(name="getAllTaiKhoan", query="select tk from TaiKhoan tk"),
-	@NamedQuery(name="getUserTaiKhoanByName", query="select tk from TaiKhoan tk where tk.username = :ma")
+	@NamedQuery(name="getTaiKhoanByName", query="select tk from TaiKhoan tk where tk.username = :ma"),
+	@NamedQuery(name="getTaiKhoanByMa", query="select tk from TaiKhoan tk where tk.id = :ma")
 })
 public class TaiKhoan implements Serializable{
 	
@@ -26,7 +27,7 @@ public class TaiKhoan implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="MAKH")
+	@Column(name="ID")
 	private int id;
 	@Column(name="TEN", columnDefinition="nvarchar(255)")
 	private String ten;

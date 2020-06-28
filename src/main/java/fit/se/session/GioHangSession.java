@@ -39,20 +39,32 @@ public class GioHangSession {
 		return gioHang;
 	}
 	
-	public static boolean thanhToan(GioHang gh, int maKH, String hoKH, String tenKH, String soDT, String diaChi, String thanhToan) {
+	public static boolean thanhToan(GioHang gh, int maKH, String hoKH, String tenKH, String soDT, String diaChi, String thanhToan, String soThe) {
 		List<ChiTietHoaDon> dsCTHD = new ArrayList<ChiTietHoaDon>();
-
-		HoaDon df = new HoaDon(null, cr.timTK(maKH), tenKH, hoKH, soDT, diaChi, thanhToan, Date.valueOf(LocalDate.now()), gh.tong());
+		System.out.println(cr.timTK(maKH));
+		HoaDon df = new HoaDon();
+		
+		df.setTaiKhoan(cr.timTK(maKH).get(0));
+		df.setTenKH(tenKH);
+		df.setHoKH(hoKH);
+		df.setSoDT(soDT);
+		df.setDiaChi(diaChi);
+		df.setThanhToan(thanhToan);
+		df.setSoThe(soThe);
+		df.setNgayLapHD(Date.valueOf(LocalDate.now()));
+		df.setTongTien(gh.tong());
+		
 		List<ChiTietHoaDon> temp = gh.getChiTietHoaDons();
 
 		temp.forEach(x ->{
 			dsCTHD.add(new ChiTietHoaDon(df, x.getBanh(), x.getSoLuong()));
 		});
 		
+//		cr.themHoaDon(df);
 		
 		for(ChiTietHoaDon x : temp) {
 			ChiTietHoaDon ct = new ChiTietHoaDon(df, x.getBanh(), x.getSoLuong());
-			cr.themChiTietHoaDon(ct);
+//			cr.themChiTietHoaDon(ct);
 		};
 		gh.getChiTietHoaDons().clear();
 		

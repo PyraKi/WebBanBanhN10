@@ -16,7 +16,8 @@ public class GioHang {
 	private String hoKH;
 	private String soDT;
 	private String diaChi;
-	private String ThanToan;
+	private String thanhToan;
+	private String soThe;
 	private Date ngayLapHD;
 	public int getMaHD() {
 		return maHD;
@@ -70,12 +71,20 @@ public class GioHang {
 		this.diaChi = diaChi;
 	}
 
-	public String getThanToan() {
-		return ThanToan;
+	public String getThanhToan() {
+		return thanhToan;
 	}
 
-	public void setThanToan(String thanToan) {
-		ThanToan = thanToan;
+	public void setThanhToan(String thanhToan) {
+		this.thanhToan = thanhToan;
+	}
+	
+	public String getSoThe() {
+		return soThe;
+	}
+
+	public void setSoThe(String soThe) {
+		this.soThe = soThe;
 	}
 
 	public Date getNgayLapHD() {
@@ -134,7 +143,7 @@ public class GioHang {
 	@Override
 	public String toString() {
 		return "GioHang [maHD=" + maHD + ", chiTietHoaDons=" + chiTietHoaDons + ", taiKhoan=" + taiKhoan + ", tenKH="
-				+ tenKH + ", hoKH=" + hoKH + ", soDT=" + soDT + ", diaChi=" + diaChi + ", ThanToan=" + ThanToan
+				+ tenKH + ", hoKH=" + hoKH + ", soDT=" + soDT + ", diaChi=" + diaChi + ", thanhToan=" + thanhToan
 				+ ", ngayLapHD=" + ngayLapHD + "]";
 	}
 	

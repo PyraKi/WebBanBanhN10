@@ -15,7 +15,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Banh")
 @NamedQueries ({
-	@NamedQuery(name="getAllBanh", query="select bn from Banh bn")
+	@NamedQuery(name="getAllBanh", query="select bn from Banh bn"),
+	@NamedQuery(name="getBanhByMaBanh", query="select bn from Banh bn where bn.maBanh = :ma")
 })
 public class Banh implements Serializable{
 	
