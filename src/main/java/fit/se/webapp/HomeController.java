@@ -68,7 +68,7 @@ public class HomeController {
 	@RequestMapping(value = "/signInForm", method = RequestMethod.GET)
 	public String login(HttpServletRequest request, Model model) {
 		LoginUser login = LoginSession.getLoginInSession(request);
-		if(login != null) {
+		if(login.getTk() != null) {
 			return "redirect:/home";
 		} else {
 			return "login";
@@ -163,5 +163,20 @@ public class HomeController {
 		GioHang gh = GioHangSession.getGioHangInSession(request);
 		gh.xoaSP(index - 1);
 		return "redirect:/shoppingCart";
+	}
+	
+	@RequestMapping(value = "/checkoutCart", method = RequestMethod.GET)
+	public String checkoutCart(HttpServletRequest request, Model model) {
+		LoginUser log = LoginSession.getLoginInSession(request);
+		TaiKhoan tk = log.getTk();
+		if(tk == null) {
+			return "redirect:/signInForm";
+		}
+
+		GioHang gh = GioHangSession.getGioHangInSession(request);
+		model.addAttribute("gioHang", gh.getChiTietHoaDons());
+		model.addAttribute("tongDonHang", gh.tong());
+		model.addAttribute("khachHang", tk);
+		return "checkout";
 	}
 }

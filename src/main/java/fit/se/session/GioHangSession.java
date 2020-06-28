@@ -18,11 +18,11 @@ import fit.se.service.CRUDService;
 public class GioHangSession {
 	private static CRUDService cr;
 
-	@Autowired()
+	@Autowired
 	CRUDService crudService;
-
+	
 	@PostConstruct
-	public void setKhoanService() {
+	public void init() {
 		GioHangSession.cr = crudService;
 	}
 

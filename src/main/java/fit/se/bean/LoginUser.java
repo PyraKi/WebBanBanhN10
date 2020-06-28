@@ -10,10 +10,11 @@ public class LoginUser {
 	private TaiKhoan tk;
 	private Date lastLogin;
 	
-    public LoginUser() {
-		
-    }
     
+	public LoginUser() {
+		super();
+	}
+
 	public TaiKhoan getTk() {
 		return tk;
 	}

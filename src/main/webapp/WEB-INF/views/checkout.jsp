@@ -163,19 +163,19 @@
 							<div class="form-group col-md-6">
 								<label for="last">Họ người nhận *</label> <input type="text"
 									class="form-control" id="last" name="lastName"
-									value="${khachHang.hoKH}" placeholder="Last Name"
+									value="${khachHang.ho}" placeholder="Last Name"
 									required="required">
 							</div>
 							<div class="form-group col-md-6">
 								<label for="first">Tên người nhận *</label> <input type="text"
 									class="form-control" id="first" name="firstName"
-									value="${khachHang.tenKH}" placeholder="First Name"
+									value="${khachHang.ten}" placeholder="First Name"
 									required="required">
 							</div>
 							<div class="form-group col-md-12">
 								<label for="address">Địa chỉ giao hàng *</label> <input
 									type="text" class="form-control" id="address" name="address"
-									value="${khachHang.diaChi}" placeholder="Street Address"
+									value="${khachHang.diachi}" placeholder="Street Address"
 									required="required">
 							</div>
 							<div class="form-group col-md-6">
@@ -221,9 +221,7 @@
 									<p style="color:red"><i><c:out value="${errorCreditCard}"></c:out></i></p>
 								</c:if>
 								<label for="phone">Nhập thẻ ngân hàng (thanh toán trực
-									tiếp)</label> <input type="text" name="creditCardNumber"> <label
-									for="phone">Mật mã xác nhận</label> <input type="text"
-									name="securityNumber">
+									tiếp)</label> <input type="text" name="creditCardNumber" size="33">
 							</div>
 							<div class="form-group col-md-12">
 								<input type="submit" name="submit" value="Thanh toán"

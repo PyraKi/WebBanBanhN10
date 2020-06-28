@@ -167,4 +167,10 @@ public class TaiKhoan implements Serializable{
 		this.soDT = soDT;
 		this.diachi = diachi;
 	}
+	@Override
+	public String toString() {
+		return "TaiKhoan [id=" + id + ", ten=" + ten + ", ho=" + ho + ", username=" + username + ", hashedPassword="
+				+ hashedPassword + ", passwordSalt=" + passwordSalt + ", loaiTK=" + loaiTK + ", email=" + email
+				+ ", cmnd=" + cmnd + ", ngaySinh=" + ngaySinh + ", soDT=" + soDT + ", diachi=" + diachi + "]";
+	}
 }

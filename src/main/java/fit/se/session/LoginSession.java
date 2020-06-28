@@ -24,12 +24,12 @@ public class LoginSession {
 	
 	private static CRUDService cr;
 	
-	@Autowired()
+	@Autowired
 	CRUDService crudService;
 
 	
 	@PostConstruct
-	public void setKhoanService() {
+	public void init() {
 		LoginSession.cr = crudService;
 	}
 
@@ -73,10 +73,9 @@ public class LoginSession {
 		return true;
 	}
 	
-	@SuppressWarnings("null")
 	public static boolean signIn(HttpServletRequest request, String userName, String password) {
 		LoginUser login = getLoginInSession(request);
-		if(login != null) {
+		if(login.getTk() != null) {
 			return true;
 		} else {
 			List<TaiKhoan> list = cr.getUserbyUsername(userName);
