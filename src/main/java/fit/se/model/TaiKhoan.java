@@ -19,7 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @NamedQueries ({
 	@NamedQuery(name="getAllTaiKhoan", query="select tk from TaiKhoan tk"),
 	@NamedQuery(name="getTaiKhoanByName", query="select tk from TaiKhoan tk where tk.username = :ma"),
-	@NamedQuery(name="getTaiKhoanByMa", query="select tk from TaiKhoan tk where tk.id = :ma")
+	@NamedQuery(name="getTaiKhoanByMa", query="select tk from TaiKhoan tk where tk.id like :id")
 })
 public class TaiKhoan implements Serializable{
 	
@@ -41,6 +41,8 @@ public class TaiKhoan implements Serializable{
 	private String passwordSalt;
 	@Column(name="LOAITK")
 	private boolean loaiTK = false;
+	@Column(name="URLAVATAR")
+	private String urlAvatar;
 	@Column(name="EMAIL", columnDefinition="nvarchar(255)")
 	private String email;
 	@Column(name="CMND")
@@ -90,6 +92,12 @@ public class TaiKhoan implements Serializable{
 	}
 	public void setLoaiTK(boolean loaiTK) {
 		this.loaiTK = loaiTK;
+	}
+	public String getUrlAvatar() {
+		return urlAvatar;
+	}
+	public void setUrlAvatar(String urlAvatar) {
+		this.urlAvatar = urlAvatar;
 	}
 	public String getEmail() {
 		return email;
@@ -171,7 +179,8 @@ public class TaiKhoan implements Serializable{
 	@Override
 	public String toString() {
 		return "TaiKhoan [id=" + id + ", ten=" + ten + ", ho=" + ho + ", username=" + username + ", hashedPassword="
-				+ hashedPassword + ", passwordSalt=" + passwordSalt + ", loaiTK=" + loaiTK + ", email=" + email
-				+ ", cmnd=" + cmnd + ", ngaySinh=" + ngaySinh + ", soDT=" + soDT + ", diachi=" + diachi + "]";
+				+ hashedPassword + ", passwordSalt=" + passwordSalt + ", loaiTK=" + loaiTK + ", urlAvatar=" + urlAvatar
+				+ ", email=" + email + ", cmnd=" + cmnd + ", ngaySinh=" + ngaySinh + ", soDT=" + soDT + ", diachi="
+				+ diachi + "]";
 	}
 }

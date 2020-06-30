@@ -145,6 +145,7 @@ CREATE TABLE [dbo].[TAIKHOAN](
 	[HASHEDPASSWORD] [varchar](255) NULL,
 	[PASSWORDSALT] [varchar](255) NULL,
 	[LOAITK] [BIT] NULL,
+	[URLAVATAR] [nvarchar](255) NULL,
 	[DIACHI] [nvarchar](255) NULL,
 	[EMAIL] [varchar](255) NULL,
 	[NGAYSINH] [datetime] NULL,
@@ -202,7 +203,7 @@ GO
 SET IDENTITY_INSERT [dbo].[TAIKHOAN] ON
 GO
 /*** Uesrname: TeacherTri, pass: 123456, loaiTK: Khách hàng ***/
-INSERT [dbo].[TAIKHOAN] ([ID], [HO], [TEN], [USERNAME], [HASHEDPASSWORD], [PASSWORDSALT], [LOAITK], [DIACHI], [EMAIL], [NGAYSINH], [CMND], [SODT]) VALUES (1, N'Trần Minh', N'Trí', N'TeacherTri', N'1ce13f067b12361a3e0cb4f5ab1361c8c1cca151d6558527daadedb03f8c963b', N'-6539266894536614551', 0, N'Phú Nhuận', N'TeacherTri@gmail.com', 3/8/1999, N'42341247', N'97312789')
+INSERT [dbo].[TAIKHOAN] ([ID], [HO], [TEN], [USERNAME], [HASHEDPASSWORD], [PASSWORDSALT], [LOAITK], [URLAVATAR], [DIACHI], [EMAIL], [NGAYSINH], [CMND], [SODT]) VALUES (1, N'Trần Minh', N'Trí', N'TeacherTri', N'1ce13f067b12361a3e0cb4f5ab1361c8c1cca151d6558527daadedb03f8c963b', N'-6539266894536614551', 0, N'resources\img\avatar\01.jpg', N'Phú Nhuận', N'TeacherTri@gmail.com', 3/8/1999, N'42341247', N'97312789')
 GO
 SET IDENTITY_INSERT [dbo].[TAIKHOAN] OFF
 GO

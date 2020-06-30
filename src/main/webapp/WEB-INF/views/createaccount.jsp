@@ -64,97 +64,98 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" method="POST">
-					<h1>
-						<span class="login100-form-title p-b-43"> Đăng Ký Tài Khoản
-						</span>
-					</h1>
-					Họ:
-					<div class="wrap-input100 validate-input"
-						data-validate="Bạn Phải Nhập Họ">
-						<input class="input100" type="text" id="hoKH" name="hoKH">
-						<span class="focus-input100"></span>
-
-					</div>
-					Tên:
-					<div class="wrap-input100 validate-input"
-						data-validate="Bạn Phải Nhập Tên">
-						<input class="input100" type="text" id="tenKH" name="tenKH">
-						<span class="focus-input100"></span>
-					</div>
-
-					Ngày sinh:<br />
-					<c:if test="${not empty errorBirthSub18}">
-						<p style="color: red">
-							<i><c:out value="${errorBirthSub18}"></c:out></i>
-						</p>
-					</c:if>
-					<div class="wrap-input100 validate-input"
-						data-validate="Bạn Phải Nhập Ngày Sinh">
-						<input class="input100" type="date" id="ngaySinh" name="ngaySinh">
-						<span class="focus-input100"></span>
-					</div>
-					Số CMND:
-					<div class="wrap-input100 validate-input"
-						data-validate="Bạn Phải Nhập CMND">
-						<input class="input100" type="text" id="soCMND" name="soCMND">
-						<span class="focus-input100"></span>
-					</div>
-					Địa chỉ:
-					<div class="wrap-input100 validate-input"
-						data-validate="Bạn Phải Nhập Địa Chỉ">
-						<input class="input100" type="text" id="diaChi" name="diaChi">
-						<span class="focus-input100"></span>
-					</div>
-					Số điện thoại:
-					<div class="wrap-input100 validate-input"
-						data-validate="Bạn Phải Nhập Số Điện Thoại">
-						<input class="input100" type="text" id="soDT" name="soDT"
-							value="${status.value}"> <span class="focus-input100"></span>
-					</div>
-					Email:
-					<div class="wrap-input100 validate-input"
-						data-validate="Email phải đúng định dạng ví dụ ex@abc.xyz">
-						<input class="input100" type="text" id="email" name="text"
-							value="${status.value}"> <span class="focus-input100"></span>
-					</div>
-					Username:
-					<c:if test="${not empty errorUserNameExists}">
-						<p style="color: red">
-							<i><c:out value="${errorUserNameExists}"></c:out></i>
-						</p>
-					</c:if>
-					<div class="wrap-input100 validate-input"
-						data-validate="Username không được để trống">
-						<input class="input100" type="text" id="userName" name="userName"
-							value="${status.value}"> <span class="focus-input100"></span>
-					</div>
-					Password:
-					<div class="wrap-input100 validate-input"
-						data-validate="Password không được để trống">
-						<input class="input100" type="password" name="hashedPassword"
-							id="hashedPassword"> <span
-							class="focus-input100"></span>
-					</div>
-					<c:if test="${not empty errorUnknown}">
-						<p style="color: red">
-							<i><c:out value="${errorUnknown}"></c:out></i>
-						</p>
-					</c:if>
-					<div class="container-login100-form-btn">
-						<input type="submit" value="Đăng ký">
-					</div>
-
-					<div class="flex-sb-m w-full p-t-3 p-b-32">
-						<p style="font-size: 15px">Bạn đã có tài khoản?</p>
-						<div>
-							<a style="font-size: 15px" href="signInForm">Đăng nhập ngay</a>
+				<div id="box">
+					<form class="login100-form validate-form" method="POST">
+						<h1>
+							<span class="login100-form-title p-b-43"> Đăng Ký Tài Khoản
+							</span>
+						</h1>
+						Họ:
+						<div class="wrap-input100 validate-input"
+							data-validate="Bạn Phải Nhập Họ">
+							<input class="input100" type="text" id="hoKH" name="hoKH">
+							<span class="focus-input100"></span>
+	
 						</div>
-					</div>
-				</form>
-
+						Tên:
+						<div class="wrap-input100 validate-input"
+							data-validate="Bạn Phải Nhập Tên">
+							<input class="input100" type="text" id="tenKH" name="tenKH">
+							<span class="focus-input100"></span>
+						</div>
+	
+						Ngày sinh:<br />
+						<c:if test="${not empty errorBirthSub18}">
+							<p style="color: red">
+								<i><c:out value="${errorBirthSub18}"></c:out></i>
+							</p>
+						</c:if>
+						<div class="wrap-input100 validate-input"
+							data-validate="Bạn Phải Nhập Ngày Sinh">
+							<input class="input100" type="date" id="ngaySinh" name="ngaySinh">
+							<span class="focus-input100"></span>
+						</div>
+						Số CMND:
+						<div class="wrap-input100 validate-input"
+							data-validate="Bạn Phải Nhập CMND">
+							<input class="input100" type="text" id="soCMND" name="soCMND">
+							<span class="focus-input100"></span>
+						</div>
+						Địa chỉ:
+						<div class="wrap-input100 validate-input"
+							data-validate="Bạn Phải Nhập Địa Chỉ">
+							<input class="input100" type="text" id="diaChi" name="diaChi">
+							<span class="focus-input100"></span>
+						</div>
+						Số điện thoại:
+						<div class="wrap-input100 validate-input"
+							data-validate="Bạn Phải Nhập Số Điện Thoại">
+							<input class="input100" type="text" id="soDT" name="soDT"
+								value="${status.value}"> <span class="focus-input100"></span>
+						</div>
+						Email:
+						<div class="wrap-input100 validate-input"
+							data-validate="Email phải đúng định dạng ví dụ ex@abc.xyz">
+							<input class="input100" type="text" id="email" name="email"
+								value="${status.value}"> <span class="focus-input100"></span>
+						</div>
+						Username:
+						<c:if test="${not empty errorUserNameExists}">
+							<p style="color: red">
+								<i><c:out value="${errorUserNameExists}"></c:out></i>
+							</p>
+						</c:if>
+						<div class="wrap-input100 validate-input"
+							data-validate="Username không được để trống">
+							<input class="input100" type="text" id="userName" name="userName"
+								value="${status.value}"> <span class="focus-input100"></span>
+						</div>
+						Password:
+						<div class="wrap-input100 validate-input"
+							data-validate="Password không được để trống">
+							<input class="input100" type="password" name="hashedPassword"
+								id="hashedPassword"> <span
+								class="focus-input100"></span>
+						</div>
+						<c:if test="${not empty errorUnknown}">
+							<p style="color: red">
+								<i><c:out value="${errorUnknown}"></c:out></i>
+							</p>
+						</c:if>
+						<div class="container-login100-form-btn">
+							<input type="submit" value="Đăng ký">
+						</div>
+	
+						<div class="flex-sb-m w-full p-t-3 p-b-32">
+							<p style="font-size: 15px">Bạn đã có tài khoản?</p>
+							<div>
+								<a style="font-size: 15px" href="signInForm">Đăng nhập ngay</a>
+							</div>
+						</div>
+					</form>
+				</div>
 				<div class="login100-more"
-					style="background-image: url('${pageContext.request.contextPath}/resources/img/comming-bg.jpg');"></div>
+						style="background-image: url('${pageContext.request.contextPath}/resources/img/comming-bg.jpg');"></div>
 			</div>
 		</div>
 	</div>

@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import fit.se.bean.GioHang;
+import fit.se.model.Banh;
 import fit.se.model.ChiTietHoaDon;
 import fit.se.model.HoaDon;
+import fit.se.model.TaiKhoan;
 import fit.se.service.CRUDService;
 
 public class GioHangSession {
@@ -39,12 +41,10 @@ public class GioHangSession {
 		return gioHang;
 	}
 	
-	public static boolean thanhToan(GioHang gh, int maKH, String hoKH, String tenKH, String soDT, String diaChi, String thanhToan, String soThe) {
-		List<ChiTietHoaDon> dsCTHD = new ArrayList<ChiTietHoaDon>();
-		System.out.println(cr.timTK(maKH));
+	public static boolean thanhToan(GioHang gh, TaiKhoan tk, String hoKH, String tenKH, String soDT, String diaChi, String thanhToan, String soThe) {
 		HoaDon df = new HoaDon();
 		
-		df.setTaiKhoan(cr.timTK(maKH).get(0));
+		df.setTaiKhoan(tk);
 		df.setTenKH(tenKH);
 		df.setHoKH(hoKH);
 		df.setSoDT(soDT);
@@ -53,19 +53,21 @@ public class GioHangSession {
 		df.setSoThe(soThe);
 		df.setNgayLapHD(Date.valueOf(LocalDate.now()));
 		df.setTongTien(gh.tong());
+		df.setChiTietHoaDons(new ArrayList<ChiTietHoaDon>());
 		
-		List<ChiTietHoaDon> temp = gh.getChiTietHoaDons();
-
-		temp.forEach(x ->{
-			dsCTHD.add(new ChiTietHoaDon(df, x.getBanh(), x.getSoLuong()));
-		});
-		
+		System.out.println(df);
 //		cr.themHoaDon(df);
 		
-		for(ChiTietHoaDon x : temp) {
+		List<ChiTietHoaDon> temp = gh.getChiTietHoaDons();
+		temp.forEach(x ->{
 			ChiTietHoaDon ct = new ChiTietHoaDon(df, x.getBanh(), x.getSoLuong());
+			System.out.println(ct);
 //			cr.themChiTietHoaDon(ct);
-		};
+			Banh b = x.getBanh();
+			b.setSoLuong(b.getSoLuong() - x.getSoLuong());
+//			cr.suaBanh(b);
+		});
+		
 		gh.getChiTietHoaDons().clear();
 		
 		return true;

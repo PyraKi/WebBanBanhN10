@@ -69,10 +69,24 @@ public class HomeController {
 	public String login(HttpServletRequest request, Model model) {
 		LoginUser login = LoginSession.getLoginInSession(request);
 		if(login.getTk() != null) {
-			return "redirect:/home";
+			return "redirect:/usernavigation";
 		} else {
 			return "login";
 		}
+	}
+	
+	@RequestMapping(value = "/usernavigation", method = RequestMethod.GET)
+	public String usernavigation(HttpServletRequest request, Model model) {
+		LoginUser login = LoginSession.getLoginInSession(request);
+		model.addAttribute("user", login.getTk());
+		return "usernavigation";
+	}
+	
+	@RequestMapping(value = "/editprofile", method = RequestMethod.POST)
+	public String editProfile(HttpServletRequest request, Model model) {
+		LoginUser login = LoginSession.getLoginInSession(request);
+		model.addAttribute("user", login.getTk());
+		return "editprofile";
 	}
 	
 	@RequestMapping(value = "/signIn", method = RequestMethod.POST)
@@ -195,7 +209,7 @@ public class HomeController {
 		String tenKH = requestParams.get("firstName");
 		String diaChi = requestParams.get("address");
 		String soDT = requestParams.get("phone");
-		String soThe = requestParams.get("creditCardNumber") != null ? requestParams.get("creditCardNumber") : "";
+		String soThe = requestParams.get("creditCardNumber") != "" ? requestParams.get("creditCardNumber") : "N/A";
 		String payment = requestParams.get("payment");
 		int errorCount = 0;
 		// Phase 1: Check no credit cart info
@@ -210,7 +224,7 @@ public class HomeController {
 			return "redirect:/checkoutFormFailed";
 		}
 //		System.out.println(log.getTaiKhoanInfo().getId());
-		boolean state = GioHangSession.thanhToan(gh, log.getTk().getId(), hoKH, tenKH, soDT, diaChi, soThe, payment);
+		boolean state = GioHangSession.thanhToan(gh, log.getTk(), hoKH, tenKH, soDT, diaChi, payment, soThe);
 		if(state) {
 			redirectAttributes.addAttribute("PageBanh", 1);
 			redirectAttributes.addAttribute("orderSuccess", "Đặt hàng thành công");
@@ -220,5 +234,26 @@ public class HomeController {
 			redirectAttributes.addAttribute("wrongInput", "Có thông tin nhập sai. Các trường nhập đã bị khôi phục thành mặc định, vui lòng nhập lại");
 			return "redirect:/checkoutFormFailed";
 		}
+	}
+	
+	@RequestMapping(value = "/indexSuccess", method = RequestMethod.GET)
+	public String homeChangePage(@RequestParam String orderSuccess, @RequestParam Integer PageBanh, Locale locale, Model model) {
+		List<Banh> list = cr.getAllBanh();
+		Integer f = new Integer(PageBanh);
+		if(list == null)
+			list = new ArrayList<Banh>();
+		List<Banh> listOut = new ArrayList<Banh>();
+		for(int i = (f-1)*15; i < f*15 ; i++) {
+			if(i < list.size())
+				listOut.add(list.get(i));
+		}
+
+		double tempTT = list.size() / 15.0;
+		Integer tt = new Integer((int)Math.ceil(tempTT));
+		model.addAttribute("ListBanh", listOut);
+		model.addAttribute("PageBanh", PageBanh);
+		model.addAttribute("TotalPage", tt);
+		model.addAttribute("orderSuccess", orderSuccess);
+		return "index";
 	}
 }
