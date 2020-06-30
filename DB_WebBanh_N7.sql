@@ -207,7 +207,7 @@ INSERT [dbo].[TAIKHOAN] ([ID], [HO], [TEN], [USERNAME], [HASHEDPASSWORD], [PASSW
 GO
 GO
 /*** Uesrname: AdminNgoc, pass: 123456, loaiTK: Admin ***/
-INSERT [dbo].[TAIKHOAN] ([ID], [HO], [TEN], [USERNAME], [HASHEDPASSWORD], [PASSWORDSALT], [LOAITK], [URLAVATAR], [DIACHI], [EMAIL], [NGAYSINH], [CMND], [SODT]) VALUES (0, N'Nguyễn Minh', N'Ngọc', N'AdminNgoc', N'1ce13f067b12361a3e0cb4f5ab1361c8c1cca151d6558527daadedb03f8c963b', N'-6539266894536614551', 1, N'resources\img\avatar\admin1.jpg', N'Vũng Tàu', N'NgocNguyen@gmail.com', 19/11/2000, N'4124121', N'33128247')
+INSERT [dbo].[TAIKHOAN] ([ID], [HO], [TEN], [USERNAME], [HASHEDPASSWORD], [PASSWORDSALT], [LOAITK], [URLAVATAR], [DIACHI], [EMAIL], [NGAYSINH], [CMND], [SODT]) VALUES (0, N'Nguyễn Minh', N'Ngọc', N'AdminNgoc', N'1ce13f067b12361a3e0cb4f5ab1361c8c1cca151d6558527daadedb03f8c963b', N'-6539266894536614551', 1, N'resources\img\avatar\admin1.png', N'Vũng Tàu', N'NgocNguyen@gmail.com', 19/11/2000, N'4124121', N'33128247')
 GO
 SET IDENTITY_INSERT [dbo].[TAIKHOAN] OFF
 GO

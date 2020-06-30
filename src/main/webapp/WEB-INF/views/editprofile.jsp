@@ -128,11 +128,7 @@
 	<section class="banner_area">
 		<div class="container">
 			<div class="banner_text">
-				<h3></h3>
-				<ul>
-					<li><a href="home"></a></li>
-					<li><a href="home"></a></li>
-				</ul>
+				<h3>Edit profile</h3>
 			</div>
 		</div>
 	</section>

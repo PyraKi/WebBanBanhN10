@@ -135,11 +135,7 @@
 	<section class="banner_area">
 		<div class="container">
 			<div class="banner_text">
-				<h3></h3>
-				<ul>
-					<li><a href="home"></a></li>
-					<li><a href="home"></a></li>
-				</ul>
+				<h3>Thông tin người dùng</h3>
 			</div>
 		</div>
 	</section>
@@ -184,8 +180,12 @@
 									
 									<div class="col-md-2">
 										<form action="editprofile" method="post">
-										<a href=""> <input type="submit" class="profile-edit-btn"
-											name="btnAddMore" value="Edit Profile" /></a>
+											<a href=""> <input type="submit" class="profile-edit-btn"
+												name="btnAddMore" value="Edit Profile" /></a>
+										</form>
+										<form action="logout" method="post">
+											<a href=""> <input type="submit" class="profile-edit-btn btn btn-danger" style="margin-top: 30px;"
+												name="logout" value="Logout" /></a>
 										</form>
 									</div>
 								<form action="usernavigation" method="get">

@@ -113,6 +113,11 @@
 						href="mainto:info@cakebakery.com"><i class="fa fa-envelope-o"
 						aria-hidden="true"></i> info@cakebakery.com</a>
 				</div>
+				<div class="float-right">
+					<ul class="h_social list_style">
+						<li><a href="signInForm"><i class="fa fa-user-circle-o"></i></a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		<div class="main_menu_area">
@@ -131,24 +136,23 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
 							<li class="active"><a href="home">Trang Chủ</a></li>
-							<li><a href="">Khuyễn Mãi</a></li>
-						</ul>
-
-						<ul class="navbar-nav justify-content-end">
-							<li><a href="">Đặt Hàng</a></li>
-							<li><a href="contact.jsp">Liên Hệ</a></li>
 						</ul>
 					</div>
 				</nav>
 			</div>
 		</div>
 	</header>
+	
+	<section class="banner_area">
+		<div class="container">
+			<div class="banner_text">
+				<h3>Admin</h3>
+			</div>
+		</div>
+	</section>
 	<!--================End Main Header Area =================-->
 	<section class="banner_area">
 		<div class="container">
-			<ul>
-				<li><a href="home">Home</a></li>
-			</ul>
 		</div>
 	</section>
 
@@ -186,7 +190,7 @@
 								<td><c:out value="${item.loaiBanh}" /></td>
 								<form action="adminUpdate" method="POST">
 									<td><input type="number" style="width: 5em;" name="soLuong"
-										min="1" max="200" required="required" value="${item.soLuong}"></td>
+										min="0" max="200" required="required" value="${item.soLuong}"></td>
 									<td>
 									<input type="hidden" name="maBanhSua" value="${item.maBanh}">
 									<input type="submit" class="button" name="action"

@@ -73,6 +73,10 @@ public class LoginSession {
 		return true;
 	}
 	
+	public static void logout(HttpServletRequest request) {
+		request.getSession().setAttribute("login", null);
+	}
+	
 	public static boolean signIn(HttpServletRequest request, String userName, String password) {
 		LoginUser login = getLoginInSession(request);
 		if(login.getTk() != null) {

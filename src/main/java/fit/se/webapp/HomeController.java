@@ -82,6 +82,12 @@ public class HomeController {
 		}
 	}
 	
+	@RequestMapping(value = "/logout", method = RequestMethod.POST)
+	public String logout(HttpServletRequest request, Model model) {
+		LoginSession.logout(request);
+		return "redirect:/home";
+	}
+	
 	@RequestMapping(value = "/usernavigation", method = RequestMethod.GET)
 	public String usernavigation(HttpServletRequest request, Model model) {
 		LoginUser login = LoginSession.getLoginInSession(request);
@@ -291,10 +297,11 @@ public class HomeController {
 	
 	@RequestMapping(value = "/adminEdit", method = RequestMethod.POST)
 	public String edit(@ModelAttribute("banh") Banh banh, Model model, RedirectAttributes redirectAttributes) {
+		System.out.println("adminEdit");
 		cr.suaBanh(banh);
 		model.addAttribute("editSuccess", "Sửa thông tin bánh thành công");
 		model.addAttribute("ds", cr.getAllBanh());
-		return "adminIndex";
+		return "redirect:/adminIndex";
 	}
 	
 	@RequestMapping(value = "/adminInsertPage", method = RequestMethod.GET)
@@ -302,7 +309,28 @@ public class HomeController {
 		Banh banh = new Banh();
 		model.addAttribute("banh", banh);
 		
-		model.addAttribute("dsloaiBanh", cr.getAllBanh());
+		model.addAttribute("dsloaiBanh",cr.getAllBanh());
 		return "insert";
+	}
+	
+	@RequestMapping(value = "/adminInsert", method = RequestMethod.POST)
+	public String insert(@ModelAttribute("banh") Banh banh, Model model, RedirectAttributes redirectAttributes) {
+		cr.themBanh(banh);
+		if(banh != null) {
+			redirectAttributes.addAttribute("addSuccess", "Thêm thông tin bánh thành công");
+			
+			model.addAttribute("editSuccess", "Sửa thông tin bánh thành công");
+			model.addAttribute("ds", cr.getAllBanh());
+			return "redirect:/adminIndex";
+		}
+		else
+		{
+			redirectAttributes.addAttribute("errorFailed", "Không thể thêm thông tin bánh");
+			model.addAttribute("banh", banh);
+			model.addAttribute("dsloaiBanh", cr.getAllBanh());
+			return "insert";
+		}
+	}
+	
 	}
 }
