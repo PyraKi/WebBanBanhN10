@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,12 +37,18 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = {"/home","/"}, method = RequestMethod.GET)
-	public String homeRedirect(Locale locale, RedirectAttributes redirectAttributes) {
-		redirectAttributes.addAttribute("PageBanh", 1);
-		return "redirect:/index";
+	public String homeRedirect(Locale locale, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+		LoginUser log = LoginSession.getLoginInSession(request);
+		if(log.getTk() == null) {
+			redirectAttributes.addAttribute("PageBanh", 1);
+			return "redirect:/index";
+		}else {
+			if(log.getTk().isLoaiTK())
+				return "redirect:/adminIndex";
+			else
+				return "redirect:/home";
+		}
 	}
-
-	
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String homeChangePage(@RequestParam Integer PageBanh, Locale locale, Model model) {
@@ -97,7 +104,11 @@ public class HomeController {
 			return "login";
 		}
 		else {
-			return "redirect:/home";
+			LoginUser log = LoginSession.getLoginInSession(request);
+			if(log.getTk().isLoaiTK())
+				return "redirect:/adminIndex";
+			else
+				return "redirect:/home";
 		}
 	}
 	
@@ -255,5 +266,43 @@ public class HomeController {
 		model.addAttribute("TotalPage", tt);
 		model.addAttribute("orderSuccess", orderSuccess);
 		return "index";
+	}
+	
+	// ADMIN
+	@RequestMapping(value = "/adminIndex", method = RequestMethod.GET)
+	public String adminindex(Model model) {
+		model.addAttribute("ds", cr.getAllBanh());
+		return "admin";
+	}
+	
+	@RequestMapping(value = "/adminUpdate", method = RequestMethod.POST)
+	public String adminUpdateBanh(@RequestParam int maBanhSua, @RequestParam int soLuong, @RequestParam String action, Model model) {
+		if(action.equalsIgnoreCase("edit")) {
+			Banh banh = cr.timBanh(maBanhSua).get(0);
+			model.addAttribute("banh", banh);
+			return "edit";
+		}else {
+			Banh banh = cr.timBanh(maBanhSua).get(0);
+			banh.setSoLuong(soLuong);
+			cr.suaBanh(banh);
+			return "redirect:/adminIndex";
+		}
+	}
+	
+	@RequestMapping(value = "/adminEdit", method = RequestMethod.POST)
+	public String edit(@ModelAttribute("banh") Banh banh, Model model, RedirectAttributes redirectAttributes) {
+		cr.suaBanh(banh);
+		model.addAttribute("editSuccess", "Sửa thông tin bánh thành công");
+		model.addAttribute("ds", cr.getAllBanh());
+		return "adminIndex";
+	}
+	
+	@RequestMapping(value = "/adminInsertPage", method = RequestMethod.GET)
+	public String insertForm(Model model) {
+		Banh banh = new Banh();
+		model.addAttribute("banh", banh);
+		
+		model.addAttribute("dsloaiBanh", cr.getAllBanh());
+		return "insert";
 	}
 }

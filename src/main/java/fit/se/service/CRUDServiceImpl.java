@@ -37,7 +37,7 @@ public class CRUDServiceImpl implements CRUDService {
 	@Override
 	@Transactional
 	public void suaBanh(Banh b) {
-		this.suaBanh(b);
+		this.cr.suaBanh(b);
 	}
 
 	@Override
@@ -73,7 +73,7 @@ public class CRUDServiceImpl implements CRUDService {
 	@Override
 	@Transactional
 	public List<TaiKhoan> timTK(int maTK) {
-		return cr.timTK(maTK);
+		return this.cr.timTK(maTK);
 	}
 
 	@Override

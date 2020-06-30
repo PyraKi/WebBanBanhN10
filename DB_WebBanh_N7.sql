@@ -205,6 +205,10 @@ GO
 /*** Uesrname: TeacherTri, pass: 123456, loaiTK: Khách hàng ***/
 INSERT [dbo].[TAIKHOAN] ([ID], [HO], [TEN], [USERNAME], [HASHEDPASSWORD], [PASSWORDSALT], [LOAITK], [URLAVATAR], [DIACHI], [EMAIL], [NGAYSINH], [CMND], [SODT]) VALUES (1, N'Trần Minh', N'Trí', N'TeacherTri', N'1ce13f067b12361a3e0cb4f5ab1361c8c1cca151d6558527daadedb03f8c963b', N'-6539266894536614551', 0, N'resources\img\avatar\01.jpg', N'Phú Nhuận', N'TeacherTri@gmail.com', 3/8/1999, N'42341247', N'97312789')
 GO
+GO
+/*** Uesrname: AdminNgoc, pass: 123456, loaiTK: Admin ***/
+INSERT [dbo].[TAIKHOAN] ([ID], [HO], [TEN], [USERNAME], [HASHEDPASSWORD], [PASSWORDSALT], [LOAITK], [URLAVATAR], [DIACHI], [EMAIL], [NGAYSINH], [CMND], [SODT]) VALUES (0, N'Nguyễn Minh', N'Ngọc', N'AdminNgoc', N'1ce13f067b12361a3e0cb4f5ab1361c8c1cca151d6558527daadedb03f8c963b', N'-6539266894536614551', 1, N'resources\img\avatar\admin1.jpg', N'Vũng Tàu', N'NgocNguyen@gmail.com', 19/11/2000, N'4124121', N'33128247')
+GO
 SET IDENTITY_INSERT [dbo].[TAIKHOAN] OFF
 GO
 ALTER TABLE [dbo].[CHITIETHOADON]  WITH CHECK ADD  CONSTRAINT [CHITIETHOADON_MABANH] FOREIGN KEY([MABANH])

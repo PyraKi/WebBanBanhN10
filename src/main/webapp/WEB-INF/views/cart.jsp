@@ -138,9 +138,7 @@
 										<input type="hidden" name="index" value="${counter.count}">
 										<input type="number" style="width: 5em;" name="soLuong"
 											min="1" max="200" required="required" value="${item.soLuong}">
-											<input type="submit"
-											name="capNhatSoLuong" value="Cập nhật"
-											class="btn btn-primary">
+										<input type="submit" name="submit" value="Cập nhật" class="btn btn-primary">
 									</form>
 								</td>
 								<td>${item.banh.gia * item.soLuong}</td>
@@ -148,7 +146,7 @@
 									<form action="removeGioHang" method="POST">
 										<input type="hidden" name="index" value="${counter.count}">
 										<input type="hidden" name="maBanh" value="${item.banh.maBanh}">
-										<input type="submit" value="Xóa" class="btn btn-primary">
+										<input type="submit" name="submit" value="xoa" class="btn btn-primary">
 									</form>
 								</td>
 							</tr>

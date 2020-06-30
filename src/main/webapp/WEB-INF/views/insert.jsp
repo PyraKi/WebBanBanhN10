@@ -93,6 +93,15 @@
 					<form:input id="tenbanh" path="tenBanh" />
 				</div>
 			</div>
+			
+			<div class="row">
+				<div class="col-25">
+					<label for="chitiet">Loại Bánh</label>
+				</div>
+				<div class="col-75">
+					<form:textarea id="chitiet" path="loaiBanh"></form:textarea>
+				</div>
+			</div>
 
 			<div class="row">
 				<div class="col-25">
@@ -114,47 +123,20 @@
 
 			<div class="row">
 				<div class="col-25">
-					<label for="dangban">Bán sản phẩm ?</label><br />
-				</div>
-				<div class="col-75">
-					<form:radiobutton path="dangBan" value="true" />
-					Bán
-					<form:radiobutton path="dangBan" value="false" />
-					Không Bán
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-25">
 					<label for="chitiet">Chi tiết</label>
 				</div>
 				<div class="col-75">
-					<form:textarea id="chitiet" path="chiTietBanh"></form:textarea>
+					<form:textarea id="chitiet" path="moTa"></form:textarea>
 				</div>
 			</div>
+			
 
 			<div class="row">
 				<div class="col-25">
-					<label for="loaiBanh">Loại bánh</label>
+					<label for="path">urlImg</label>
 				</div>
 				<div class="col-75">
-					<form:select path="loaiBanh.maLoaiBanh" id="loaiBanh"
-						name="loaiBanh">
-						<c:forEach var="loaiBanh" items="${dsloaiBanh }">
-							<option value="${loaiBanh.maLoaiBanh }">
-								<c:out value="${loaiBanh.tenLoaiBanh }"></c:out>
-							</option>
-						</c:forEach>
-					</form:select>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-25">
-					<label for="path">Path Hình ảnh</label>
-				</div>
-				<div class="col-75">
-					<form:input id="path" path="pathHinhAnh" />
+					<form:input id="path" path="urlImg" />
 				</div>
 			</div>
 
