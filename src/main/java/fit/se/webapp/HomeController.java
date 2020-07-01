@@ -89,7 +89,7 @@ public class HomeController {
 	public String logout(Locale locale, RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		LoginSession.logout(request);
 		redirectAttributes.addAttribute("PageBanh", 1);
-		return "redirect:/index";
+		return "redirect:/home";
 	}
 	
 	@RequestMapping(value = "/usernavigation", method = RequestMethod.GET)
@@ -99,11 +99,31 @@ public class HomeController {
 		return "usernavigation";
 	}
 	
-	@RequestMapping(value = "/editprofile", method = RequestMethod.POST)
-	public String editProfile(HttpServletRequest request, Model model) {
+	@RequestMapping(value = "/editprofilePage", method = RequestMethod.GET)
+	public String editProfilePage(HttpServletRequest request, Model model) {
 		LoginUser login = LoginSession.getLoginInSession(request);
 		model.addAttribute("user", login.getTk());
 		return "editprofile";
+	}
+	
+	@RequestMapping(value = "/updateProfile", method = RequestMethod.POST)
+	public String editProfile(@RequestParam Map<String, String> requestParams, HttpServletRequest request, 
+			Model model, RedirectAttributes redirectAttributes) {
+		List<String> a = LoginSession.generateHashedPassword(requestParams.get("hashedPassword"));
+		TaiKhoan tk = LoginSession.getLoginInSession(request).getTk();
+		tk.setTen(requestParams.get("ten"));		
+		tk.setHo(requestParams.get("ho"));
+		tk.setUsername(request.getParameter("userName"));
+		tk.setHashedPassword(a.get(0));
+		tk.setPasswordSalt(a.get(1));
+		tk.setEmail(requestParams.get("email"));		
+		tk.setCmnd(requestParams.get("soCMND"));
+		tk.setNgaySinh(java.sql.Date.valueOf(requestParams.get("ngaySinh")));		
+		tk.setSoDT(requestParams.get("soDT"));		
+		tk.setDiachi(requestParams.get("diaChi"));
+		cr.SuaTK(tk);
+		redirectAttributes.addAttribute("UpdateProfile", "Sửa profile thành công");
+		return "redirect:/home";	
 	}
 	
 	@RequestMapping(value = "/signIn", method = RequestMethod.POST)
@@ -160,7 +180,7 @@ public class HomeController {
 				requestParams.get("diaChi"));
 		
 		if(LoginSession.signUp(tk)) {
-			return "redirect:/home";
+			return "redirect:/index";
 		}
 		else {
 			model.addAttribute("errorUnknown", "Không thể đăng ký, có lỗi không rõ đã xảy ra");
@@ -247,6 +267,7 @@ public class HomeController {
 //		System.out.println(log.getTaiKhoanInfo().getId());
 		boolean state = GioHangSession.thanhToan(gh, log.getTk(), hoKH, tenKH, soDT, diaChi, payment, soThe);
 		if(state) {
+			GioHangSession.removeCartInSession(request);
 			redirectAttributes.addAttribute("PageBanh", 1);
 			redirectAttributes.addAttribute("orderSuccess", "Đặt hàng thành công");
 			return "redirect:/indexSuccess";

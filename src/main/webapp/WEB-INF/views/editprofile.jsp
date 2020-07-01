@@ -165,73 +165,73 @@
 										Use this to show important messages to the user.
 									</div>
 									<h3>Thông tin cá nhân</h3>
-
-									<form class="form-horizontal" role="form">
-										<div class="form-group">
-											<label class="col-lg-3 control-label">Tên:</label>
-											<div class="col-lg-8">
-												<input class="form-control" type="text" value="${user.ten}">
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-lg-3 control-label">Họ:</label>
-											<div class="col-lg-8">
-												<input class="form-control" type="text" value="${user.ho}">
-											</div>
-										</div>
+									<form:form action="updateProfile" method="POST" modelAttribute="user">
+										<form class="form-horizontal" role="form">
 											<div class="form-group">
-											<label class="col-md-3 control-label">Username:</label>
-											<div class="col-md-8">
-												<input class="form-control" type="text" value="${user.username}">
+												<label class="col-lg-3 control-label">Tên:</label>
+												<div class="col-lg-8">
+													<form:input id="ten" path="ten" class="form-control"/>
+												</div>
 											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-md-3 control-label">Password:</label>
-											<div class="col-md-8">
-												<input class="form-control" type="password">
+											<div class="form-group">
+												<label class="col-lg-3 control-label">Họ:</label>
+												<div class="col-lg-8">
+													<form:input id="ho" path="ho" class="form-control"/>
+												</div>
 											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-md-3 control-label">Confirm
-												password:</label>
-											<div class="col-md-8">
-												<input class="form-control" type="password">
+												<div class="form-group">
+												<label class="col-md-3 control-label">Username:</label>
+												<div class="col-md-8">
+													<form:input id="username" path="username" class="form-control"/>
+												</div>
 											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-lg-3 control-label">CMND:</label>
-											<div class="col-lg-8">
-												<input class="form-control" type="text" value="${user.cmnd}">
+											<div class="form-group">
+												<label class="col-md-3 control-label">Password:</label>
+												<div class="col-md-8">
+													<form:password id="password" path="hashedPassword" class="form-control"/>
+												</div>
 											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-lg-3 control-label">Ngày Sinh:</label>
-											<div class="col-lg-8">
-												<input class="form-control" type="date" value="${user.ngaySinh}">
+											<div class="form-group">
+												<label class="col-lg-3 control-label">CMND:</label>
+												<div class="col-lg-8">
+													<form:input id="cmnd" path="cmnd" class="form-control"/>
+												</div>
 											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-lg-3 control-label">Email:</label>
-											<div class="col-lg-8">
-												<input class="form-control" type="email"
-													value="${user.email}">
+											<div class="form-group">
+												<label class="col-lg-3 control-label">Ngày Sinh:</label>
+												<div class="col-lg-8">
+													<input type="date" id="ngaySinh" name="ngaySinh" value="${user.ngaySinh}">
+												</div>
 											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-md-3 control-label">Phone:</label>
-											<div class="col-md-8">
-												<input class="form-control" type="text" value="${user.soDT}">
+											<div class="form-group">
+												<label class="col-lg-3 control-label">Email:</label>
+												<div class="col-lg-8">
+													<form:input id="email" path="email" class="form-control"/>
+												</div>
 											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-md-3 control-label"></label>
-											<div class="col-md-8">
-												<input type="button" class="btn btn-primary"
-													value="Save Changes"> <span></span> <input
-													type="reset" class="btn btn-default" value="Cancel">
+											<div class="form-group">
+												<label class="col-md-3 control-label">Phone:</label>
+												<div class="col-md-8">
+													<form:input id="soDT" path="soDT" class="form-control"/>
+												</div>
 											</div>
-										</div>
-									</form>
+											<div class="form-group">
+												<label class="col-md-3 control-label">Địa Chỉ:</label>
+												<div class="col-md-8">
+													<form:input id="diachi" path="diachi" class="form-control"/>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-md-3 control-label"></label>
+												<div class="col-md-8">
+												
+													<input type="submit" class="btn btn-primary"
+														value="Save Changes"> <span></span> 
+													<input type="reset" class="btn btn-default" value="Cancel">
+												</div>
+											</div>
+										</form>
+									</form:form>
 								</div>
 							</div>
 						</div>

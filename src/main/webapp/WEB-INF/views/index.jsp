@@ -138,8 +138,17 @@
 										<form action="addGioHang" method="POST">
 											<input type="hidden" name="maBanh" value="${item.maBanh}">
 											<input type="hidden" name="PageBanh" value="${PageBanh}">
-											<input type="submit" name="addToCart" value="Add to cart"
-												class="btn btn-primary">
+											<c:choose>
+												<c:when test="${item.soLuong == 0}">
+														<input type="submit" name="addToCart" value="Add to cart"
+														class="btn btn-primary" 
+														style="pointer-events: none;">
+												</c:when>
+												<c:when test="${item.soLuong > 0}">
+														<input type="submit" name="addToCart" value="Add to cart"
+														class="btn btn-primary" >
+												</c:when>
+											</c:choose>
 										</form>
 									</div>
 								</div>

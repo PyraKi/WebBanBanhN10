@@ -135,7 +135,7 @@ public class GioHang {
 	public double tong() {
 		double tong = 0;
 		for (ChiTietHoaDon ct : chiTietHoaDons) {
-			tong = ct.tong();
+			tong += ct.tong();
 		}
 		return tong;
 	}

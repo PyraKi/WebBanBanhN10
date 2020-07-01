@@ -215,10 +215,10 @@
 			
 			<div class="row">
 				<div class="col-25">
-					<label for="chitiet">Loại Bánh</label>
+					<label for="loaiBanh">Loại Bánh</label>
 				</div>
 				<div class="col-75">
-					<form:textarea id="chitiet" path="loaiBanh"></form:textarea>
+					<form:textarea id="loaiBanh" path="loaiBanh"></form:textarea>
 				</div>
 			</div>
 
@@ -242,10 +242,10 @@
 
 			<div class="row">
 				<div class="col-25">
-					<label for="chitiet">Chi tiết</label>
+					<label for="chitiet">Mô tả</label>
 				</div>
 				<div class="col-75">
-					<form:textarea id="chitiet" path="moTa"></form:textarea>
+					<form:textarea id="moTa" path="moTa"></form:textarea>
 				</div>
 			</div>
 			

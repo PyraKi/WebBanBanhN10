@@ -179,7 +179,7 @@
 								</form>
 									
 									<div class="col-md-2">
-										<form action="editprofile" method="post">
+										<form action="editprofilePage">
 											<a href=""> <input type="submit" class="profile-edit-btn"
 												name="btnAddMore" value="Edit Profile" /></a>
 										</form>
