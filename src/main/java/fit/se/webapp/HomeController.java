@@ -43,10 +43,13 @@ public class HomeController {
 			redirectAttributes.addAttribute("PageBanh", 1);
 			return "redirect:/index";
 		}else {
-			if(log.getTk().isLoaiTK())
+			if(log.getTk().isLoaiTK()) {
 				return "redirect:/adminIndex";
-			else
-				return "redirect:/home";
+			} else {
+				redirectAttributes.addAttribute("PageBanh", 1);
+				return "redirect:/index";
+			}
+				
 		}
 	}
 
@@ -83,9 +86,10 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.POST)
-	public String logout(HttpServletRequest request, Model model) {
+	public String logout(Locale locale, RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		LoginSession.logout(request);
-		return "redirect:/home";
+		redirectAttributes.addAttribute("PageBanh", 1);
+		return "redirect:/index";
 	}
 	
 	@RequestMapping(value = "/usernavigation", method = RequestMethod.GET)
@@ -330,7 +334,5 @@ public class HomeController {
 			model.addAttribute("dsloaiBanh", cr.getAllBanh());
 			return "insert";
 		}
-	}
-	
 	}
 }
