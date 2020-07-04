@@ -9,17 +9,21 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fit.se.bean.GioHang;
 import fit.se.bean.LoginUser;
+import fit.se.exception.ResourceNotFoundException;
 import fit.se.model.Banh;
 import fit.se.model.TaiKhoan;
 import fit.se.service.CRUDService;
@@ -109,20 +113,25 @@ public class HomeController {
 	@RequestMapping(value = "/updateProfile", method = RequestMethod.POST)
 	public String editProfile(@RequestParam Map<String, String> requestParams, HttpServletRequest request, 
 			Model model, RedirectAttributes redirectAttributes) {
-		List<String> a = LoginSession.generateHashedPassword(requestParams.get("hashedPassword"));
+		java.sql.Date entered = java.sql.Date.valueOf(requestParams.get("ngaySinh").toString());
+		java.sql.Date min18 = java.sql.Date.valueOf(LocalDate.now().minusYears(18));
+		if (entered.after(min18)) {
+			model.addAttribute("errorBirthSub18", "Tuổi của người đăng ký phải từ 18 tuổi trở lên");
+			return "editprofile";
+		}
+		List<String> a = LoginSession.generateHashedPassword(requestParams.get("password"));
 		TaiKhoan tk = LoginSession.getLoginInSession(request).getTk();
 		tk.setTen(requestParams.get("ten"));		
 		tk.setHo(requestParams.get("ho"));
-		tk.setUsername(request.getParameter("userName"));
 		tk.setHashedPassword(a.get(0));
 		tk.setPasswordSalt(a.get(1));
 		tk.setEmail(requestParams.get("email"));		
-		tk.setCmnd(requestParams.get("soCMND"));
+		tk.setCmnd(requestParams.get("cmnd"));
 		tk.setNgaySinh(java.sql.Date.valueOf(requestParams.get("ngaySinh")));		
 		tk.setSoDT(requestParams.get("soDT"));		
-		tk.setDiachi(requestParams.get("diaChi"));
+		tk.setDiachi(requestParams.get("diachi"));
+		System.out.println("pass: "+requestParams.get("password"));
 		cr.SuaTK(tk);
-		redirectAttributes.addAttribute("UpdateProfile", "Sửa profile thành công");
 		return "redirect:/home";	
 	}
 	
@@ -135,7 +144,7 @@ public class HomeController {
 		}
 		else {
 			LoginUser log = LoginSession.getLoginInSession(request);
-			if(log.getTk().isLoaiTK())
+			if(log.getTk().isLoaiTK()) 
 				return "redirect:/adminIndex";
 			else
 				return "redirect:/home";
@@ -180,7 +189,7 @@ public class HomeController {
 				requestParams.get("diaChi"));
 		
 		if(LoginSession.signUp(tk)) {
-			return "redirect:/index";
+			return "redirect:/home";
 		}
 		else {
 			model.addAttribute("errorUnknown", "Không thể đăng ký, có lỗi không rõ đã xảy ra");
@@ -194,7 +203,7 @@ public class HomeController {
 //		System.out.println("timBanh: " + cr.timBanh(maBanh));
 		gh.themBanh(cr.timBanh(maBanh).get(0));
 		redirectAttributes.addAttribute("PageBanh", PageBanh);
-		return "redirect:/index";
+		return "redirect:/home";
 	}
 	
 	@RequestMapping(value = "/shoppingCart", method = RequestMethod.GET)
@@ -269,8 +278,7 @@ public class HomeController {
 		if(state) {
 			GioHangSession.removeCartInSession(request);
 			redirectAttributes.addAttribute("PageBanh", 1);
-			redirectAttributes.addAttribute("orderSuccess", "Đặt hàng thành công");
-			return "redirect:/indexSuccess";
+			return "redirect:/home";
 		}
 		else {
 			redirectAttributes.addAttribute("wrongInput", "Có thông tin nhập sai. Các trường nhập đã bị khôi phục thành mặc định, vui lòng nhập lại");
@@ -356,4 +364,14 @@ public class HomeController {
 			return "insert";
 		}
 	}
+	
+	//handle exception
+	@ExceptionHandler(ResourceNotFoundException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	public String handleResourceNotFoundException(Model model) {
+		System.out.println("404");
+		model.addAttribute("error", "Lỗi 404 không tìm thấy trang");
+		return "error";
+	}
+	
 }

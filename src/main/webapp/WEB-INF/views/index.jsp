@@ -51,7 +51,7 @@
 			<div class="container">
 				<div class="float-left">
 					<a href="tell:+18004567890"><i class="fa fa-phone"
-						aria-hidden="true"></i> +84339737498</a> <a
+						aria-hidden="true"></i> +974979691</a> <a
 						href="mainto:info@cakebakery.com"><i class="fa fa-envelope-o"
 						aria-hidden="true"></i> info@cakebakery.com</a>
 				</div>
@@ -87,7 +87,7 @@
 
 						<ul class="navbar-nav justify-content-end">
 							<li><a href="">Đặt Hàng</a></li>
-							<li><a href="contact.html">Liên Hệ</a></li>
+							<li><a href="">Liên Hệ</a></li>
 						</ul>
 					</div>
 				</nav>
@@ -260,13 +260,13 @@
 	</section>
 	<!--================End Product Area =================-->
 	<!--================Footer Area =================-->
-	<footer class="footer_area">
+<footer class="footer_area">
 		<div class="footer_widgets">
 			<div class="container">
 				<div class="row footer_wd_inner">
 					<div class="col-lg-3 col-6">
 						<aside class="f_widget f_about_widget">
-							<img src="${pageContext.request.contextPath}/resources/img/footer-logo.png" alt="">
+							<img src="img/footer-logo.png" alt="">
 							<p>Hãy đến với chúng tôi để được phục vụ tận tình nhất</p>
 							<ul class="nav">
 								<li><a><i class="fa fa-facebook"></i></a></li>
@@ -294,9 +294,9 @@
 								<h3>Thời Gian Làm Việc</h3>
 							</div>
 							<ul class="list_style">
-								<li><a>Hai - Sáu : 8 sáng - 8 tối</a></li>
-								<li><a>Bảy : 9 sáng - 4 tối</a></li>
-								<li><a>CN : Nghỉ</a></li>
+								<li><a>Monday-Fri : 8 am - 8 pm</a></li>
+								<li><a>Sat : 9am - 4pm</a></li>
+								<li><a>Sun : Closed</a></li>
 							</ul>
 						</aside>
 					</div>
@@ -305,7 +305,7 @@
 							<div class="f_title">
 								<h3>Liên Hệ Với Chúng Tôi</h3>
 							</div>
-							<h4>(+84)339737498</h4>
+							<h4>(+84)974979691</h4>
 							<p>
 								Cake Bakery <br />12, Nguyễn Văn Bảo, Hồ Chí Minh City
 							</p>

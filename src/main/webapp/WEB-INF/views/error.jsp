@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -73,9 +75,74 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+<style>
+	input[type=text], select, textarea {
+		width: 100%;
+		padding: 12px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		resize: vertical;
+	}
+	
+	label {
+		padding: 12px 12px 12px 0;
+		display: inline-block;
+	}
+	
+	input[type=submit] {
+		background-color: #4CAF50;
+		width: 100%;
+		color: white;
+		padding: 12px 20px;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+	}
+	
+	.col-25 {
+		float: left;
+		width: 25%;
+		margin-top: 6px;
+	}
+	
+	.col-75 {
+		float: left;
+		width: 75%;
+		margin-top: 6px;
+	}
+	
+	input[type=submit]:hover {
+		background-color: #45a049;
+	}
+	
+	#btnsub{
+		vertical-align: middle;
+		text-align: center;
+	}
+	
+	.row:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+	
+	@media screen and (max-width: 600px) {
+		.col-25, .col-75, input[type=submit] {
+			width: 100%;
+			margin-top: 0;
+		}
+	}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+	.col-25, .col-75, input[type=submit] {
+		width: 100%;
+		margin-top: 0;
+	}
+}
+</style>
 </head>
 <body>
-
 	<!--================Main Header Area =================-->
 	<header class="main_header_area">
 		<div class="top_header_area row m0">
@@ -89,19 +156,10 @@
 				<div class="float-right">
 					<ul class="h_social list_style">
 						<li><a href="signInForm"><i class="fa fa-user-circle-o"></i></a></li>
-						<li><a href="checkoutCart"><i class="fa fa-sign-out"></i></a></li>
-					</ul>
-					<ul class="h_search list_style">
-						<li><a href="shoppingCart"><i class="fa fa-shopping-cart"></i></a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
-		<c:if test="${not empty wrongInput}">
-			<script type="text/javascript">
-				alert("${wrongInput}");
-			</script>
-		</c:if>
 		<div class="main_menu_area">
 			<div class="container">
 				<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -121,121 +179,31 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
 							<li class="active"><a href="home">Trang Chủ</a></li>
-							<li><a href="">Khuyễn Mãi</a></li>
-						</ul>
-
-						<ul class="navbar-nav justify-content-end">
-							<li><a href="">Đặt Hàng</a></li>
-							<li><a href="">Liên Hệ</a></li>
 						</ul>
 					</div>
 				</nav>
 			</div>
 		</div>
 	</header>
-	<!--================End Main Header Area =================-->
-
-	<!--================End Main Header Area =================-->
+	
 	<section class="banner_area">
 		<div class="container">
 			<div class="banner_text">
-				<h3>Checkout</h3>
-				<ul>
-					<li><a href="home">Home</a></li>
-					<li><a href="checkoutCart">Checkout</a></li>
-				</ul>
+				<h3>Rất tiếc đã có lỗi</h3>
 			</div>
 		</div>
 	</section>
 	<!--================End Main Header Area =================-->
-
-	<!--================Billing Details Area =================-->
-	<section class="billing_details_area p_100">
+	<section class="banner_area">
 		<div class="container">
-			<div class="row">
-				<div class="col-lg-7">
-					<div class="main_title">
-						<h2>Billing Details</h2>
-					</div>
-					<div class="billing_form_area">
-						<form class="billing_form row" action="confirmCheckout"
-							method="post" id="contactForm" novalidate="novalidate">
-							<div class="form-group col-md-6">
-								<label for="last">Họ người nhận *</label> <input type="text"
-									class="form-control" id="last" name="lastName"
-									value="${khachHang.ho}" placeholder="Last Name"
-									required="required">
-							</div>
-							<div class="form-group col-md-6">
-								<label for="first">Tên người nhận *</label> <input type="text"
-									class="form-control" id="first" name="firstName"
-									value="${khachHang.ten}" placeholder="First Name"
-									required="required">
-							</div>
-							<div class="form-group col-md-12">
-								<label for="address">Địa chỉ giao hàng *</label> <input
-									type="text" class="form-control" id="address" name="address"
-									value="${khachHang.diachi}" placeholder="Street Address"
-									required="required">
-							</div>
-							<div class="form-group col-md-6">
-								<label for="phone">Số điện thoại *</label> <input type="text"
-									value="${khachHang.soDT}" class="form-control" id="phone"
-									name="phone" placeholder="Số điện thoại" required="required">
-							</div>
-							<div class="form-group col-md-12">
-								<div class="order_box_price">
-									<div class="main_title">
-										<h2>Xem lại đơn hàng</h2>
-									</div>
-									<div class="payment_list">
-										<div class="price_single_cost">
-											<h5>
-												Sản phẩm <span>Tổng tiền</span>
-											</h5>
-											<c:forEach items="${gioHang}" var="item">
-												<h5>
-													${item.banh.tenBanh}
-													<c:out value="x"></c:out>
-													${item.soLuong} <span>${item.banh.gia * item.soLuong}</span>
-												</h5>
-											</c:forEach>
-											<h4>
-												Tổng tiền <span>${tongDonHang}</span>
-											</h4>
-											<h3>
-												Tổng tiền bao gồm thuế <span>${tongDonHang}</span>
-											</h3>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="form-group col-md-6">
-								<label for="phone">Chọn hình thức thanh toán *</label> <input
-									type="radio" name="payment" value="direct" checked>
-								Thanh toán trực tiếp<br> <input type="radio" name="payment"
-									value="creditCard"> Thẻ tín dụng<br>
-							</div>
-							<div class="form-group col-md-6">
-								<c:if test="${not empty errorCreditCard}">
-									<p style="color:red"><i><c:out value="${errorCreditCard}"></c:out></i></p>
-								</c:if>
-								<label for="phone">Nhập thẻ ngân hàng (thanh toán trực
-									tiếp)</label> <input type="text" name="creditCardNumber" size="33">
-							</div>
-							<div class="form-group col-md-12">
-								<input type="submit" name="submit" value="Thanh toán"
-									class="btn btn-primary">
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
 		</div>
-
 	</section>
-	<!--================End Billing Details Area =================-->
 
+	<div class="container" style="margin-top: 60px; margin-bottom: 30px;">
+		<h4>${error}</h4>
+		<h5>Vui lòng liên hệ admin để sử lý vấn đề.</h5>
+	</div>
+		
 
 	<!--================Footer Area =================-->
 	<footer class="footer_area">
@@ -314,10 +282,9 @@
 	<!--================End Search Box Area =================-->
 
 
-
-
-
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/loginmain.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -325,44 +292,7 @@
 		src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-	<!-- Rev slider js -->
 	<script
-		src="${pageContext.request.contextPath}/resources/vendors/revolution/js/jquery.themepunch.tools.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendors/revolution/js/jquery.themepunch.revolution.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendors/revolution/js/extensions/revolution.extension.actions.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendors/revolution/js/extensions/revolution.extension.video.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendors/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendors/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
-	<!-- Extra plugin js -->
-	<script
-		src="${pageContext.request.contextPath}/resources/vendors/owl-carousel/owl.carousel.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendors/magnifc-popup/jquery.magnific-popup.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendors/isotope/imagesloaded.pkgd.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendors/isotope/isotope.pkgd.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendors/datetime-picker/js/moment.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendors/datetime-picker/js/bootstrap-datetimepicker.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendors/nice-select/js/jquery.nice-select.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendors/jquery-ui/jquery-ui.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/vendors/lightbox/simpleLightbox.min.js"></script>
-
-
-
-	<script src="${pageContext.request.contextPath}/resources/js/theme.js"></script>
+		src="${pageContext.request.contextPath}/resources/js/bootstrap-validate.js"></script>
 </body>
-
 </html>

@@ -56,16 +56,16 @@ public class GioHangSession {
 		df.setChiTietHoaDons(new ArrayList<ChiTietHoaDon>());
 		
 //		System.out.println(df);
-		cr.themHoaDon(df);
+//		cr.themHoaDon(df);
 		
 		List<ChiTietHoaDon> temp = gh.getChiTietHoaDons();
 		temp.forEach(x ->{
 			ChiTietHoaDon ct = new ChiTietHoaDon(df, x.getBanh(), x.getSoLuong());
 //			System.out.println(ct);
-			cr.themChiTietHoaDon(ct);
+//			cr.themChiTietHoaDon(ct);
 			Banh b = x.getBanh();
 			b.setSoLuong(b.getSoLuong() - x.getSoLuong());
-			cr.suaBanh(b);
+//			cr.suaBanh(b);
 		});
 		
 		gh.getChiTietHoaDons().clear();

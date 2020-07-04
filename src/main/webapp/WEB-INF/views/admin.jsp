@@ -9,32 +9,63 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="icon" href="${pageContext.request.contextPath}/resources/img/fav-icon.png" type="image/x-icon" />
+<link rel="icon"
+	href="${pageContext.request.contextPath}/resources/img/fav-icon.png"
+	type="image/x-icon" />
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <title>Cake - Bakery</title>
 
 <!-- Icon css link -->
-<link href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/vendors/linearicons/style.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/vendors/flat-icon/flaticon.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/vendors/stroke-icon/style.css" rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/vendors/linearicons/style.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/vendors/flat-icon/flaticon.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/vendors/stroke-icon/style.css"
+	rel="stylesheet">
 <!-- Bootstrap -->
-<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
+	rel="stylesheet">
 
 <!-- Rev slider css -->
-<link href="${pageContext.request.contextPath}/resources/vendors/revolution/css/settings.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/vendors/revolution/css/layers.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/vendors/revolution/css/navigation.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/vendors/animate-css/animate.css" rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/vendors/revolution/css/settings.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/vendors/revolution/css/layers.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/vendors/revolution/css/navigation.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/vendors/animate-css/animate.css"
+	rel="stylesheet">
 
 <!-- Extra plugin css -->
-<link href="${pageContext.request.contextPath}/resources/vendors/owl-carousel/owl.carousel.min.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/vendors/magnifc-popup/magnific-popup.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/vendors/jquery-ui/jquery-ui.min.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/vendors/nice-select/css/nice-select.css" rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/vendors/owl-carousel/owl.carousel.min.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/vendors/magnifc-popup/magnific-popup.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/vendors/jquery-ui/jquery-ui.min.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/vendors/nice-select/css/nice-select.css"
+	rel="stylesheet">
 
-<link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/css/responsive.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/style.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/css/responsive.css"
+	rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -43,66 +74,70 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 <style type="text/css">
-	
-	input[type=text], select, textarea {
+input[type=text], select, textarea {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	resize: vertical;
+}
+
+label {
+	padding: 12px 12px 12px 0;
+	display: inline-block;
+}
+
+input[type=submit] {
+	background-color: #4CAF50;
+	width: 100%;
+	color: white;
+	padding: 12px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.col-25 {
+	float: left;
+	width: 25%;
+	margin-top: 6px;
+}
+
+.col-75 {
+	float: left;
+	width: 75%;
+	margin-top: 6px;
+}
+
+input[type=submit]:hover {
+	background-color: #45a049;
+}
+
+#btnsub {
+	vertical-align: middle;
+	text-align: center;
+}
+
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+@media screen and (max-width: 600px) {
+	.col-25, .col-75, input[type=submit] {
 		width: 100%;
-		padding: 12px;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		resize: vertical;
+		margin-top: 0;
 	}
-	
-	label {
-		padding: 12px 12px 12px 0;
-		display: inline-block;
-	}
-	
-	input[type=submit] {
-		background-color: #4CAF50;
-		width: 100%;
-		color: white;
-		padding: 12px 20px;
-		border: none;
-		border-radius: 4px;
-		cursor: pointer;
-	}
-	
-	.col-25 {
-		float: left;
-		width: 25%;
-		margin-top: 6px;
-	}
-	
-	.col-75 {
-		float: left;
-		width: 75%;
-		margin-top: 6px;
-	}
-	
-	input[type=submit]:hover {
-		background-color: #45a049;
-	}
-	
-	#btnsub{
-		vertical-align: middle;
-		text-align: center;
-	}
-	
-	.row:after {
-		content: "";
-		display: table;
-		clear: both;
-	}
-	
-	@media screen and (max-width: 600px) {
-		.col-25, .col-75, input[type=submit] {
-			width: 100%;
-			margin-top: 0;
-		}
-	}
+}
 </style>
 </head>
 <body>
+	<c:if test="${not empty orderSuccess}">
+		<script type="text/javascript">
+			alert("${orderSuccess}");
+		</script>
+	</c:if>
 	<!--================Main Header Area =================-->
 	<header class="main_header_area">
 		<div class="top_header_area row m0">
@@ -124,7 +159,10 @@
 			<div class="container">
 				<nav class="navbar navbar-expand-lg navbar-light bg-light">
 					<a class="navbar-brand" href="home"> <img
-						src="${pageContext.request.contextPath}/resources/img/logo.png" alt=""> <img src="${pageContext.request.contextPath}/resources/img/logo-2.png" alt="">
+						src="${pageContext.request.contextPath}/resources/img/logo.png"
+						alt=""> <img
+						src="${pageContext.request.contextPath}/resources/img/logo-2.png"
+						alt="">
 					</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse"
 						data-target="#navbarSupportedContent"
@@ -142,7 +180,7 @@
 			</div>
 		</div>
 	</header>
-	
+
 	<section class="banner_area">
 		<div class="container">
 			<div class="banner_text">
@@ -152,8 +190,7 @@
 	</section>
 	<!--================End Main Header Area =================-->
 	<section class="banner_area">
-		<div class="container">
-		</div>
+		<div class="container"></div>
 	</section>
 
 	<!--================Cart Table Area =================-->
@@ -174,30 +211,31 @@
 								<form action="adminInsertPage">
 									<input type="submit" class="button"
 										style="background-color: #4CAF50;" value="Insert New">
-								</form>
-							</</th>
+								</form> </
+							</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach items="${ds}" var="item">
 							<tr>
-								<td><img src="<c:out value="resources/${item.urlImg}"></c:out>" width="170"
-									height="170" alt=""></td>
+								<td><img
+									src="<c:out value="resources/${item.urlImg}"></c:out>"
+									width="170" height="170" alt=""></td>
 								<td><c:out value="${item.maBanh}" /></td>
 								<td><c:out value="${item.tenBanh}" /></td>
 								<td><c:out value="${item.gia}" /></td>
-								<td ><c:out value="${item.giamGia}"/></td>
+								<td><c:out value="${item.giamGia}" /></td>
 								<td><c:out value="${item.loaiBanh}" /></td>
 								<form action="adminUpdate" method="POST">
-									<td><input type="number" style="width: 5em;" name="soLuong"
-										min="0" max="200" required="required" value="${item.soLuong}"></td>
-									<td>
-									<input type="hidden" name="maBanhSua" value="${item.maBanh}">
-									<input type="submit" class="button" name="action"
-										style="background-color: #008CBA;" value="Edit">
-								
-									<input type="hidden" name="maBanhSua" value="${item.maBanh}">
-									<input type="submit" class="button" name="action"
+									<td><input type="number" style="width: 5em;"
+										name="soLuong" min="0" max="200" required="required"
+										value="${item.soLuong}"></td>
+									<td><input type="hidden" name="maBanhSua"
+										value="${item.maBanh}"> <input type="submit"
+										class="button" name="action"
+										style="background-color: #008CBA;" value="Edit"> <input
+										type="hidden" name="maBanhSua" value="${item.maBanh}">
+										<input type="submit" class="button" name="action"
 										style="background-color: #ff00ff;" value="update quantity">
 								</form>
 								</td>
@@ -290,13 +328,18 @@
 
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 	<!-- Rev slider js -->
-	<script src="${pageContext.request.contextPath}/resources/vendors/revolution/js/jquery.themepunch.tools.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/vendors/revolution/js/jquery.themepunch.revolution.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/vendors/revolution/js/jquery.themepunch.tools.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/vendors/revolution/js/jquery.themepunch.revolution.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/vendors/revolution/js/extensions/revolution.extension.actions.min.js"></script>
 	<script
@@ -308,16 +351,24 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/vendors/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
 	<!-- Extra plugin js -->
-	<script src="${pageContext.request.contextPath}/resources/vendors/owl-carousel/owl.carousel.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/vendors/magnifc-popup/jquery.magnific-popup.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/vendors/isotope/imagesloaded.pkgd.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/vendors/isotope/isotope.pkgd.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/vendors/datetime-picker/js/moment.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/vendors/owl-carousel/owl.carousel.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/vendors/magnifc-popup/jquery.magnific-popup.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/vendors/isotope/imagesloaded.pkgd.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/vendors/isotope/isotope.pkgd.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/vendors/datetime-picker/js/moment.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/vendors/datetime-picker/js/bootstrap-datetimepicker.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/vendors/nice-select/js/jquery.nice-select.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/vendors/jquery-ui/jquery-ui.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/vendors/lightbox/simpleLightbox.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/vendors/nice-select/js/jquery.nice-select.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/vendors/jquery-ui/jquery-ui.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/vendors/lightbox/simpleLightbox.min.js"></script>
 
 	<script src="${pageContext.request.contextPath}/resources/js/theme.js"></script>
 </body>

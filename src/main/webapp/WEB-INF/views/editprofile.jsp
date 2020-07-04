@@ -83,10 +83,6 @@
 				<div class="float-right">
 					<ul class="h_social list_style">
 						<li><a href=signInForm><i class="fa fa-user-circle-o"></i></a></li>
-						<li><a href="checkoutCart"><i class="fa fa-sign-out"></i></a></li>
-					</ul>
-					<ul class="h_search list_style">
-						<li><a href="shoppingCart"><i class="fa fa-shopping-cart"></i></a></li>
 					</ul>
 				</div>
 			</div>
@@ -110,12 +106,6 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
 							<li class="active"><a href="home">Trang Chủ</a></li>
-							<li><a href="">Khuyễn Mãi</a></li>
-						</ul>
-
-						<ul class="navbar-nav justify-content-end">
-							<li><a href="">Đặt Hàng</a></li>
-							<li><a href="contact.html">Liên Hệ</a></li>
 						</ul>
 					</div>
 				</nav>
@@ -165,69 +155,98 @@
 										Use this to show important messages to the user.
 									</div>
 									<h3>Thông tin cá nhân</h3>
-									<form:form action="updateProfile" method="POST" modelAttribute="user">
+									<form:form action="updateProfile" method="POST"
+										modelAttribute="user">
 										<form class="form-horizontal" role="form">
 											<div class="form-group">
 												<label class="col-lg-3 control-label">Tên:</label>
-												<div class="col-lg-8">
-													<form:input id="ten" path="ten" class="form-control"/>
+												<div class="col-lg-8 wrap-input100 validate-input"
+													data-validate="Bạn Phải Nhập Tên">
+													<form:input class="input100 form-control" id="ten"
+														path="ten" />
+													<span class="focus-input100"></span>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-lg-3 control-label">Họ:</label>
-												<div class="col-lg-8">
-													<form:input id="ho" path="ho" class="form-control"/>
+												<div class="col-lg-8 wrap-input100 validate-input"
+													data-validate="Bạn Phải Nhập Họ">
+													<form:input class="input100 form-control" id="ho" path="ho" />
+													<span class="focus-input100"></span>
 												</div>
 											</div>
-												<div class="form-group">
+											<div class="form-group">
 												<label class="col-md-3 control-label">Username:</label>
 												<div class="col-md-8">
-													<form:input id="username" path="username" class="form-control"/>
+													<input type="text" class="input100 form-control"
+														value="${user.username}" disabled="disabled" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-md-3 control-label">Password:</label>
-												<div class="col-md-8">
-													<form:password id="password" path="hashedPassword" class="form-control"/>
+												<div class="wrap-input100 validate-input col-md-8"
+													data-validate="Password không được để trống">
+													<input class="input100 form-control" type="text"
+														name="password" id="password"> <span
+														class="focus-input100"></span>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-lg-3 control-label">CMND:</label>
-												<div class="col-lg-8">
-													<form:input id="cmnd" path="cmnd" class="form-control"/>
+												<div class="col-lg-8 wrap-input100 validate-input"
+													data-validate="Bạn Phải Nhập CMND">
+													<form:input id="cmnd" path="cmnd"
+														class="input100 form-control" />
+													<span class="focus-input100"></span>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-lg-3 control-label">Ngày Sinh:</label>
-												<div class="col-lg-8">
-													<input type="date" id="ngaySinh" name="ngaySinh" value="${user.ngaySinh}">
+												<c:if test="${not empty errorBirthSub18}">
+													<p style="color: red">
+														<i><c:out value="${errorBirthSub18}"></c:out></i>
+													</p>
+												</c:if>
+												<div class="col-lg-8 wrap-input100 validate-input"
+													data-validate="Bạn Phải Nhập Ngày Sinh">
+													<input type="date" id="ngaySinh" name="ngaySinh"
+														class="input100 form-control" value="${user.ngaySinh}">
+													<span class="focus-input100"></span>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-lg-3 control-label">Email:</label>
-												<div class="col-lg-8">
-													<form:input id="email" path="email" class="form-control"/>
+												<div class="col-lg-8 wrap-input100 validate-input"
+													data-validate="Bạn Phải Nhập Email">
+													<form:input class="input100 form-control" id="email"
+														path="email" />
+													<span class="focus-input100"></span>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-md-3 control-label">Phone:</label>
-												<div class="col-md-8">
-													<form:input id="soDT" path="soDT" class="form-control"/>
+												<div class="col-lg-8 wrap-input100 validate-input"
+													data-validate="Bạn Phải Nhập số điện thoại">
+													<form:input class="input100 form-control" id="soDT"
+														path="soDT" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-md-3 control-label">Địa Chỉ:</label>
-												<div class="col-md-8">
-													<form:input id="diachi" path="diachi" class="form-control"/>
+												<div class="col-lg-8 wrap-input100 validate-input"
+													data-validate="Bạn Phải Nhập địa chỉ">
+													<form:input class="input100 form-control" id="diachi"
+														path="diachi" />
+													<span class="focus-input100"></span>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-md-3 control-label"></label>
 												<div class="col-md-8">
-												
-													<input type="submit" class="btn btn-primary"
-														value="Save Changes"> <span></span> 
-													<input type="reset" class="btn btn-default" value="Cancel">
+													<input type="submit"
+														class="btn btn-primary container-login100-form-btn"
+														value="Save Changes"> <span></span> <input
+														type="reset" class="btn btn-default" value="Cancel">
 												</div>
 											</div>
 										</form>
@@ -421,6 +440,12 @@
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script
 		src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/loginmain.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script
 		src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
@@ -461,6 +486,36 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/vendors/lightbox/simpleLightbox.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/theme.js"></script>
+	<!-- bắt lỗi -->
+3	<script
+		src="${pageContext.request.contextPath}/resources/js/bootstrap-validate.js"></script>
+	<script>
+		bootstrapValidate(
+				'#ho',
+				'regex:^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+$:Chỉ nhập các ký tự chữ cái không khoảng trắng');
+		bootstrapValidate('#ho', 'max:10:Họ dài quá 10 ký tự');
+		bootstrapValidate(
+				'#ten',
+				'regex:^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]+$:Chỉ nhập các ký tự chữ cái');
+		bootstrapValidate('#ten', 'max:30:Tên dài quá 30 ký tự');
+		bootstrapValidate('#cmnd', 'regex:^[0-9]+$:Chỉ nhập các ký số');
+		bootstrapValidate('#cmnd', 'min:9:CMND phải nhập đủ 9 tới 13 số');
+		bootstrapValidate('#cmnd', 'max:13:CMND phải nhập đủ 9 tới 13 số');
+		bootstrapValidate('#soDT', 'regex:^[0-9]+$:Chỉ nhập các ký số');
+		bootstrapValidate('#soDT',
+				'min:8:Số điện thoại phải nhập đủ 8 tới 11 số');
+		bootstrapValidate('#soDT',
+				'max:11:Số điện thoại phải nhập đủ 8 tới 11 số');
+		bootstrapValidate('#email', 'email:Vui lòng nhập đúng định dạng email');
+		bootstrapValidate('#username',
+				'regex:^[a-zA-Z0-9]+$:Không nhập chữ cái có dấu');
+		bootstrapValidate('#username', 'min:6:Username ít nhất phải từ 6 ký tự');
+		bootstrapValidate('#username', 'max:32:Username không quá 32 ký tự');
+		bootstrapValidate('#password',
+				'regex:^[0]{1}/[0-$:Không nhập chữ cái có dấu');
+		bootstrapValidate('#password', 'min:6:Password ít nhất phải từ 6 ký tự');
+		bootstrapValidate('#password', 'max:32:Password không quá từ 32 ký tự');
+	</script>
 </body>
 
 </html>

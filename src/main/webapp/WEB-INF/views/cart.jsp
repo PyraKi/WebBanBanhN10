@@ -87,7 +87,7 @@
 
 						<ul class="navbar-nav justify-content-end">
 							<li><a href="">Đặt Hàng</a></li>
-							<li><a href="contact.jsp">Liên Hệ</a></li>
+							<li><a href="">Liên Hệ</a></li>
 						</ul>
 					</div>
 				</nav>
