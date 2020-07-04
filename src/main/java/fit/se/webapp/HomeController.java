@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,6 +28,7 @@ import fit.se.exception.ResourceNotFoundException;
 import fit.se.model.Banh;
 import fit.se.model.TaiKhoan;
 import fit.se.service.CRUDService;
+import fit.se.service.EmailService;
 import fit.se.session.GioHangSession;
 import fit.se.session.LoginSession;
 
@@ -236,6 +238,14 @@ public class HomeController {
 		if(tk == null) {
 			return "redirect:/signInForm";
 		}
+		
+		if(request.getSession().getAttribute("code") == null) {
+			Random random = new Random();
+		    int code = random.nextInt(999999 - 100000) + 100000;
+		    request.getSession().setAttribute("code", code);
+		    new EmailService().sendEmail(tk.getEmail(), "Xac nhan thanh toan", "Code xac nhan: " + code);
+		    System.out.println(code);
+		}
 
 		GioHang gh = GioHangSession.getGioHangInSession(request);
 		model.addAttribute("gioHang", gh.getChiTietHoaDons());
@@ -251,7 +261,8 @@ public class HomeController {
 		if(tk == null) {
 			return "redirect:/signInForm";
 		}
-
+		
+	
 		GioHang gh = GioHangSession.getGioHangInSession(request);
 //		System.out.println(gh);
 		
@@ -262,12 +273,17 @@ public class HomeController {
 		String soThe = requestParams.get("creditCardNumber") != "" ? requestParams.get("creditCardNumber") : "N/A";
 		String payment = requestParams.get("payment");
 		int errorCount = 0;
-		// Phase 1: Check no credit cart info
+		// Phase 1: Check no credit cart info errorVerify
 		if(payment.equalsIgnoreCase("creditCard")) {
 			if(soThe.trim().equals("")) {
 				redirectAttributes.addAttribute("errorCreditCard", "Số thẻ không được trống đối với thanh toán qua thẻ tín dụng");
 				errorCount++;
 			}
+		}
+		// Phase 2: Check errorVerify
+		if(requestParams.get("codeVerify") == (request.getSession().getAttribute("code"))) {
+			redirectAttributes.addAttribute("errorVerify", "Mã verify không đúng vui lòng kiểm tra lại");
+			errorCount++;
 		}
 		if(errorCount > 0) {
 			redirectAttributes.addAttribute("wrongInput", "Có thông tin nhập sai. Các trường nhập đã bị khôi phục thành mặc định, vui lòng nhập lại");
@@ -277,6 +293,7 @@ public class HomeController {
 		boolean state = GioHangSession.thanhToan(gh, log.getTk(), hoKH, tenKH, soDT, diaChi, payment, soThe);
 		if(state) {
 			GioHangSession.removeCartInSession(request);
+			request.getSession().setAttribute("code", null);
 			redirectAttributes.addAttribute("PageBanh", 1);
 			return "redirect:/home";
 		}

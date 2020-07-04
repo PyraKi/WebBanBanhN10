@@ -222,6 +222,12 @@
 								</c:if>
 								<label for="phone">Nhập thẻ ngân hàng (thanh toán trực
 									tiếp)</label> <input type="text" name="creditCardNumber" size="33">
+									<label
+									<c:if test="${not empty errorVerify}">
+									<p style="color:red"><i><c:out value="${errorVerify}"></c:out></i></p>
+									</c:if>
+									for="phone">Mật mã xác nhận</label> <input type="text"
+									name="codeVerify">
 							</div>
 							<div class="form-group col-md-12">
 								<input type="submit" name="submit" value="Thanh toán"
